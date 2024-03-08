@@ -1,6 +1,6 @@
-# TheraBooking.com
+# TheraBooking Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Website Link : [https://thera-booking.vercel.app/](https://thera-booking.vercel.app/) 
 
 ## Git Instruction
 
