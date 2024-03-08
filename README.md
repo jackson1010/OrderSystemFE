@@ -54,14 +54,13 @@ git push origin feat/xxxxxxxxxxxxx
 
 ## NPM Scripts
 
-1. install all dependencies\
-   😈 Always npm install after you did the git pull
+1. install all node modules dependencies (😈 Important!!! ) 
 
 ```bash
 npm install
 ```
 
-2. Runs the app in the development mode.
+2. Runs the app in the local development mode.
 
 ```bash
 npm run start
