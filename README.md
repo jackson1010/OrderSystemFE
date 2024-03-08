@@ -4,56 +4,79 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Git Instruction
 
-### `git clone https://github.com/vincentkua/TheraBooking.git`
-Clone project into your working folder\
+1. Clone project into your working folder
 
-### `git pull origin main`
-Pull latest code from the repository\
-Merge conflict? Hehehe... Good Luck Babe...\
+```bash
+git clone https://github.com/vincentkua/TheraBooking.git
+```
 
-### `git branch`
-Check existing local branch\
+2. Pull latest code from the repository
 
-### `git branch feat/xxxxxxxxxxxxx`
-Create new local branch\
+```bash
+git pull origin main
+```
 
-### `git switch feat/xxxxxxxxxxxxx`
-Switch into branch feat/xxxxxxxxxxxxx\
+3. Check existing local branch
 
-### `git add .`
-Add changes to Staged Changes.
+```bash
+git branch
+```
 
-### `git commit -m "feat: xxxxxxxxxxxxxxxxx"`
-Commit the changes to the local branch.
+4. Create new local branch
 
-### `git push origin feat/xxxxxxxxxxxxx`
-Push the branch to the remote repository.
+```bash
+git branch feat/xxxxxxxxxxxxx
+```
 
+5. Switch into branch feat/xxxxxxxxxxxxx
+
+```bash
+git switch feat/xxxxxxxxxxxxx
+```
+
+6. Add changes to Staged Changes.
+
+```bash
+git add .
+```
+
+7. Commit the changes to the local branch.
+
+```bash
+git commit -m "feat: xxxxxxxxxxxxxxxxx"
+```
+
+8. Push the branch to the remote repository.
+
+```bash
+git push origin feat/xxxxxxxxxxxxx
+```
 
 ## NPM Scripts
 
-### `npm start`
+1. install all dependencies (Important !!! Run this everytime after you git pull from the remote repository!!! )
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+npm install
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. Runs the app in the development mode.
 
-### `npm test`
+```bash
+npm run start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Build the project for publish
 
-### `npm run build`
+```bash
+npm run build
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. Run unit test (Jest Test)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm run test
+```
 
 ## Learn More
 
