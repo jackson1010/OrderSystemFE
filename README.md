@@ -54,8 +54,8 @@ git push origin feat/xxxxxxxxxxxxx
 
 ## NPM Scripts
 
-1. install all dependencies
-   :smiling_imp: Always npm install the latest dependency after you did the git pull
+1. install all dependencies\
+   😈 Always npm install after you did the git pull
 
 ```bash
 npm install
