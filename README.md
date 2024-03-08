@@ -1,6 +1,6 @@
 # TheraBooking Project
 
-Website Link : [Vercel Link](https://thera-booking.vercel.app/) 
+Website Link : [Vercel Link](https://thera-booking.vercel.app/) \
 Figma Link : [Figma Link](https://www.figma.com/files/project/212618053/TheraBooking-UI?fuid=1343586521310159750)
 
 ## Git Instruction
