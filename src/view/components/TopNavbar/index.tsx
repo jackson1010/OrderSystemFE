@@ -4,7 +4,7 @@ const TopNavbar = () => {
   return (
     <>
       <StyledNavDiv>
-        <h3>TheraBooking.com</h3>
+        <h3>TheraBooking</h3>
         <a href="/">Home</a>
         <a href="/about">About</a>
         <a href="/login">Logout</a>
