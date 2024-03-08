@@ -54,7 +54,9 @@ git push origin feat/xxxxxxxxxxxxx
 
 ## NPM Scripts
 
-1. install all dependencies (Important !!! Run this everytime after you git pull from the remote repository!!! )
+1. install all dependencies
+   > [!IMPORTANT]
+   > Always npm install the latest dependency after you did the git pull
 
 ```bash
 npm install
