@@ -1,10 +1,36 @@
-# Getting Started with Create React App
+# TheraBooking.com
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Git Instruction
 
-In the project directory, you can run:
+### `git clone https://github.com/vincentkua/TheraBooking.git`
+Clone project into your working folder\
+
+### `git pull origin main`
+Pull latest code from the repository\
+Merge conflict? Hehehe... Good Luck Babe...\
+
+### `git branch`
+Check existing local branch\
+
+### `git branch feat/xxxxxxxxxxxxx`
+Create new local branch\
+
+### `git switch feat/xxxxxxxxxxxxx`
+Switch into branch feat/xxxxxxxxxxxxx\
+
+### `git add .`
+Add changes to Staged Changes.
+
+### `git commit -m "feat: xxxxxxxxxxxxxxxxx"`
+Commit the changes to the local branch.
+
+### `git push origin feat/xxxxxxxxxxxxx`
+Push the branch to the remote repository.
+
+
+## NPM Scripts
 
 ### `npm start`
 
