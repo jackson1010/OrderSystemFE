@@ -1,3 +1,5 @@
 export const GET_CARTS = "GET_CARTS"
 export const ADD_CARTS = "ADD_CARTS"
 export const DELETE_CARTS = "DELETE_CARTS"
+export const GET_POKEMON = "GET_POKEMON"
+export const SET_POKEMON = "SET_POKEMON"

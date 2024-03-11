@@ -1,7 +1,6 @@
-import { combineReducers } from "redux";
-import { ADD_CARTS, DELETE_CARTS, GET_CARTS } from "./constant";
+import { ADD_CARTS, DELETE_CARTS, GET_CARTS } from "../constant";
 
-const cartsReducer = (data = ["orange"], action: any) => {
+export const cartsReducer = (data = ["orange"], action: any) => {
   switch (action.type) {
     case GET_CARTS:
       console.log("reducer - get carts called");
@@ -19,7 +18,4 @@ const cartsReducer = (data = ["orange"], action: any) => {
       return data;
   }
 };
-const rootReducer = combineReducers({
-  cartsReducer,
-});
-export default rootReducer;
+
