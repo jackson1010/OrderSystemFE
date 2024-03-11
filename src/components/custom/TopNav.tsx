@@ -20,7 +20,13 @@ const TopNav = () => {
           Login
         </Link>
         <Link to="/shadcnui" className="text-blue-200 pl-4 font-semibold">
-          Shadcn UI
+          SampleShadCnUI
+        </Link>
+        <Link
+          to="/samplereduxsagaaxios"
+          className="text-blue-200 pl-4 font-semibold"
+        >
+          SampleReduxSagaAxios
         </Link>
       </div>
     </>
