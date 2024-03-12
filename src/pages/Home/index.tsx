@@ -9,17 +9,20 @@ import {
 } from "@/components/ui/select";
 import { Calendar } from "@/components/ui/calendar";
 import { useState } from "react";
+import "./Home.css";
 
 const Home = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
 
   return (
     <div>
-      <div className="bg-slate-100 p-4 text-slate-600 font-bold ">
+      <div className="bg-slate-300 p-4 text-slate-600 font-bold ">
         <img src={GehaLogo} className="inline" style={{ height: "40px" }} />
-        <span className="ml-2">Geha Booking System</span>
+        <span className="ml-2">Appointment Booking</span>
         <span style={{ float: "right" }}>en</span>
       </div>
+      <div className="banner" />
+
       <div className="p-4">
         <Card className="p-4 bg-slate-100">
           <h3 className="text-md font-bold">Notice:</h3>
