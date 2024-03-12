@@ -10,7 +10,7 @@ const TopNav = () => {
         >
           TheraBooking
         </h3>
-        <Link to="/" className="text-blue-200 pl-4 font-semibold">
+        <Link to="/home" className="text-blue-200 pl-4 font-semibold">
           Home
         </Link>
         <Link to="/about" className="text-blue-200 pl-4 font-semibold">
