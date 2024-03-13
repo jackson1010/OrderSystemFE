@@ -9,16 +9,16 @@ import {
 } from "@/components/ui/select";
 import { Calendar } from "@/components/ui/calendar";
 import { useState } from "react";
-import "./Home.css";
+import "./styles.css";
 
-const Home = () => {
+const TherapyBooking = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
 
   return (
     <div>
       <div className="bg-slate-300 p-4 text-slate-600 font-bold ">
         <img src={GehaLogo} className="inline" style={{ height: "40px" }} />
-        <span className="ml-2">Appointment Booking</span>
+        <span className="ml-2">Therapy Booking</span>
         <span style={{ float: "right" }}>en</span>
       </div>
       <div className="banner" />
@@ -63,4 +63,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default TherapyBooking;
