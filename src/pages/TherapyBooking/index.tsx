@@ -1,4 +1,4 @@
-import GehaLogo from "../../assets/logo/GehaLogo.png";
+import { Menu } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import {
   Select,
@@ -7,57 +7,193 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Calendar } from "@/components/ui/calendar";
 import { useState } from "react";
 import "./styles.css";
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
+import { Textarea } from "@/components/ui/textarea";
 
 const TherapyBooking = () => {
-  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<Date>();
 
   return (
     <div>
-      <div className="bg-slate-300 p-4 text-slate-600 font-bold ">
-        <img src={GehaLogo} className="inline" style={{ height: "40px" }} />
-        <span className="ml-2">Therapy Booking</span>
+      <div className="bg-slate-700 p-4 text-slate-200 font-bold ">
+        <Sheet key={"left"}>
+          <SheetTrigger>
+            <Menu />
+          </SheetTrigger>
+          <SheetContent side={"left"} className="w-[300px]">
+            <SheetHeader>
+              <SheetTitle>App Menu</SheetTitle>
+              <SheetDescription className="text-base space-y-4  pt-4">
+                <p>Therapy Booking</p>
+                <p>Profile Setting</p>
+                <p>Logout</p>
+              </SheetDescription>
+            </SheetHeader>
+          </SheetContent>
+        </Sheet>
+        <span className="ml-2" style={{ verticalAlign: "top" }}>
+          Therapy Booking
+        </span>
+
         <span style={{ float: "right" }}>en</span>
       </div>
       <div className="banner" />
 
       <div className="p-4">
-        <Card className="p-4 bg-slate-100">
-          <h3 className="text-md font-bold">Notice:</h3>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, qui
-            suscipit illo est unde sequi doloremque sed laborum deleniti. Vero
-            ad placeat magni repellat, facilis vel totam inventore iusto
-            sapiente! Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Aperiam rem architecto id nostrum nobis ea, perferendis non
-            inventore? Similique eveniet praesentium iusto amet rerum,
-            voluptatem eligendi? Rem earum amet porro.
-          </p>
+        <p className="text-md font-bold pb-2">Your Appointments:</p>
+        <Card className="p-4 text-sm space-y-2">
+          <li>
+            Wed 20/03/2024 2.00PM
+            <span className="text-blue-500 underline pl-2 font-semibold">
+              Details
+            </span>
+            <span className="text-red-400 underline pl-2 font-semibold">
+              Cancel
+            </span>
+          </li>
+          <li>
+            Thu 28/03/2024 3.00PM
+            <span className="text-blue-500 underline pl-2 font-semibold">
+              Details
+            </span>
+            <span className="text-red-400 underline pl-2 font-semibold">
+              Cancel
+            </span>
+          </li>
+          <li>
+            Wed 03/04/2024 3.00PM
+            <span className="text-blue-500 underline pl-2 font-semibold">
+              Details
+            </span>
+            <span className="text-red-400 underline pl-2 font-semibold">
+              Cancel
+            </span>
+          </li>
         </Card>
       </div>
-      <div className="p-5">
-        <p className="text-md font-bold pb-2">Category:</p>
-        <Select>
-          <SelectTrigger className="w-[280px]">
-            <SelectValue placeholder="Select Service" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="DRC">DRC - Day Rehab Centre</SelectItem>
-            <SelectItem value="SH">SH - Sheltered Home</SelectItem>
-          </SelectContent>
-        </Select>
+
+      <div className="mt-2 p-4">
+        <p className="text-md font-bold pb-2">New Appointment:</p>
+        <Card className="p-4 text-sm space-y-2">
+          <p>
+            Therapist:
+            <Select>
+              <SelectTrigger className="max-w-72">
+                <SelectValue placeholder="Select Therapist" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="001">001 - Happy Bear</SelectItem>
+                <SelectItem value="002">002 - Angry Tiger</SelectItem>
+                <SelectItem value="003">003 - Sleepy Dog</SelectItem>
+                <SelectItem value="004">004 - Tasty Chicken</SelectItem>
+                <SelectItem value="005">005 - Crazy Frog</SelectItem>
+              </SelectContent>
+            </Select>
+          </p>
+          <p>Date:</p>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant={"outline"}
+                className={cn(
+                  "w-[288px] justify-start text-left font-normal",
+                  !date && "text-muted-foreground"
+                )}
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {date ? format(date, "PPP") : <span>Pick a date</span>}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0">
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={setDate}
+                initialFocus
+              />
+            </PopoverContent>
+          </Popover>
+          <p>Time:</p>
+          <Select>
+            <SelectTrigger className="max-w-72">
+              <SelectValue placeholder="Time Slot" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="0900" disabled>
+                09:00AM
+              </SelectItem>
+              <SelectItem value="1000" disabled>
+                10:00AM
+              </SelectItem>
+              <SelectItem value="1100" disabled>
+                11:00AM
+              </SelectItem>
+              <SelectItem value="1200">12:00PM</SelectItem>
+              <SelectItem value="1300">01:00PM</SelectItem>
+              <SelectItem value="1400">02:00PM</SelectItem>
+              <SelectItem value="1500" disabled>
+                03:00PM
+              </SelectItem>
+              <SelectItem value="1600" disabled>
+                04:00PM
+              </SelectItem>
+              <SelectItem value="1700">05:00PM</SelectItem>
+            </SelectContent>
+          </Select>
+
+          <p>Remarks:</p>
+          <Textarea className="max-w-72" />
+
+          <br />
+
+          <Button>Confirm Booking</Button>
+        </Card>
       </div>
 
-      <div className="mt-2 p-5 inline-block">
-        <p className="text-md font-bold pb-2">Booking Slot:</p>
-        <Calendar
-          mode="single"
-          selected={date}
-          onSelect={setDate}
-          className="rounded-md border"
-        />
+      <div className="mt-2 p-4 mb-10">
+        <p className="text-md font-bold pb-2 text-red-500">Notes:</p>
+        <Card className="p-4 text-sm space-y-2 bg-red-100">
+          <li>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores
+            eligendi id sed? Repellendus neque explicabo sint quam accusantium,
+            aliquid quidem, quod perspiciatis totam error nam inventore itaque
+            corporis dicta vero!
+          </li>
+          <li>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam
+            soluta vel tenetur aspernatur dolore molestiae aut sapiente iure
+            quae, accusamus odit deleniti cupiditate dignissimos pariatur
+            consectetur reiciendis, officiis delectus labore.
+          </li>
+          <li>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque
+            aliquid dolore minus cum doloremque similique ut delectus eveniet,
+            et officiis quasi aliquam sunt placeat exercitationem. Sed quasi
+            culpa consectetur. Laboriosam!
+          </li>
+        </Card>
       </div>
     </div>
   );
