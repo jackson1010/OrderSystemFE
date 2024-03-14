@@ -23,14 +23,17 @@ import {
 
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 
 import { Textarea } from "@/components/ui/textarea";
+import { Link } from "react-router-dom";
 
 const TherapyBooking = () => {
   const [date, setDate] = useState<Date>();
@@ -38,21 +41,47 @@ const TherapyBooking = () => {
   return (
     <div>
       <div className="bg-slate-700 p-4 text-slate-200 font-bold ">
-        <Sheet key={"left"}>
-          <SheetTrigger>
-            <Menu />
-          </SheetTrigger>
-          <SheetContent side={"left"} className="w-[300px]">
-            <SheetHeader>
-              <SheetTitle>App Menu</SheetTitle>
-              <SheetDescription className="text-base space-y-4  pt-4">
-                <p>Therapy Booking</p>
-                <p>Profile Setting</p>
-                <p>Logout</p>
-              </SheetDescription>
-            </SheetHeader>
-          </SheetContent>
-        </Sheet>
+        <div className="mobilemenubtn">
+          <Sheet key={"left"}>
+            <SheetTrigger>
+              <Menu />
+            </SheetTrigger>
+            <SheetContent side={"left"} className="w-[300px]">
+              <SheetHeader>
+                <SheetTitle></SheetTitle>
+                <SheetDescription></SheetDescription>
+              </SheetHeader>
+              <div className="font-bold">GEHA Booking</div>
+              <SheetFooter className="text-base space-y-4 pt-4 ">
+                <SheetClose asChild>
+                  <>
+                    <div className="text-blue-500 space-y-4 mt-4">
+                      <li>
+                        <Link to="/therapy">Home</Link>
+                      </li>
+                      <li>
+                        <Link to="/therapy">Therapy Booking</Link>
+                      </li>
+                      <li>
+                        <Link to="/underdevelopment">Visitor Booking</Link>
+                      </li>
+                      <li>
+                        <Link to="/underdevelopment">Setting</Link>
+                      </li>
+                      <li>
+                        <Link to="/login">Login</Link>
+                      </li>
+                      <li>
+                        <Link to="/references">References</Link>
+                      </li>
+                    </div>
+                  </>
+                </SheetClose>
+              </SheetFooter>
+            </SheetContent>
+          </Sheet>
+        </div>
+
         <span className="ml-2" style={{ verticalAlign: "top" }}>
           Therapy Booking
         </span>

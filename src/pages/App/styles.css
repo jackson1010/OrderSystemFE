@@ -1,5 +1,21 @@
-.header3 {
-  color: red;
-  padding: 40px;
-  font-family: Arial;
+.sidenav {
+  height: 100vh;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
+}
+
+.sidecontent {
+  margin-left: 200px; /* Same as the width of the sidenav */
+
+  @media (max-width: 800px) {
+    margin-left: 0;
+  }
 }
