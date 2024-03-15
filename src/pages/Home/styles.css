@@ -1,0 +1,15 @@
+.banner {
+  background-image: url("../../assets/images/banner1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+}
+
+.mobilemenubtn {
+  display: none;
+
+  @media (max-width: 800px) {
+    display: inline;
+  }
+}

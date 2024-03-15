@@ -6,40 +6,67 @@ import SampleReduxSagaAxios from "../References/SampleReduxSagaAxios";
 import SampleShadCnUi from "../References/SampleShadCnUi";
 import UnderDevelopment from "../UnderDevelopment";
 import "./styles.css";
+import {
+  BookHeartIcon,
+  BookUserIcon,
+  HomeIcon,
+  LinkIcon,
+  LogOutIcon,
+  SettingsIcon,
+} from "lucide-react";
+import HomePage from "../Home";
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
-        <div className="sidenav bg-slate-800 text-slate-50 p-4">
-          <div className="font-bold" style={{ height: "30px" }}>
-            GEHA BOOKING
+        <div className="sidenav bg-slate-800">
+          <div className="px-4 h-16">
+            <p className="font-bold py-5 text-slate-200">GEHA BOOKING APP</p>
           </div>
-          <div className="text-blue-300 space-y-4 mt-4">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/therapy">Therapy Booking</Link>
-            </li>
-            <li>
-              <Link to="/underdevelopment">Visitor Booking</Link>
-            </li>
-            <li>
-              <Link to="/underdevelopment">Setting</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/references">References</Link>
-            </li>
+          <div className="text-slate-400">
+            <Link to="/" className=" block p-4 hover:bg-slate-700">
+              <HomeIcon className="inline" />
+              <span className="pl-4">Home</span>
+            </Link>
+
+            <Link to="/therapy" className=" block p-4 hover:bg-slate-700">
+              <BookHeartIcon className="inline" />
+              <span className="pl-4">Therapy Booking</span>
+            </Link>
+
+            <Link
+              to="/underdevelopment"
+              className=" block p-4 hover:bg-slate-700"
+            >
+              <BookUserIcon className="inline" />
+              <span className="pl-4">Visitor Booking</span>
+            </Link>
+
+            <Link
+              to="/underdevelopment"
+              className=" block p-4 hover:bg-slate-700"
+            >
+              <SettingsIcon className="inline" />
+              <span className="pl-4">Settings</span>
+            </Link>
+
+            <Link to="/references" className=" block p-4 hover:bg-slate-700">
+              <LinkIcon className="inline" />
+              <span className="pl-4">References</span>
+            </Link>
+
+            <Link to="/login" className=" block p-4 hover:bg-slate-700">
+              <LogOutIcon className="inline" />
+              <span className="pl-4">Logout</span>
+            </Link>
           </div>
         </div>
         <div className="sidecontent">
           <Routes>
-            <Route path="/" element={<TherapyBooking />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/therapy" element={<TherapyBooking />} />
+            <Route path="/visitor" element={<UnderDevelopment />} />
             <Route path="/login" element={<Login />} />
             <Route path="/shadcnui" element={<SampleShadCnUi />} />
             <Route path="/sampleredux" element={<SampleReduxSagaAxios />} />

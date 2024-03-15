@@ -1,4 +1,3 @@
-import { Menu } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import {
   Select,
@@ -10,7 +9,7 @@ import {
 import { useState } from "react";
 import "./styles.css";
 import { format } from "date-fns";
-import { Calendar as CalendarIcon } from "lucide-react";
+import { ArrowLeftIcon, Calendar as CalendarIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -21,17 +20,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-
 import { Textarea } from "@/components/ui/textarea";
 import { Link } from "react-router-dom";
 
@@ -40,89 +28,13 @@ const TherapyBooking = () => {
 
   return (
     <div>
-      <div className="bg-slate-700 p-4 text-slate-200 font-bold ">
-        <div className="mobilemenubtn">
-          <Sheet key={"left"}>
-            <SheetTrigger>
-              <Menu />
-            </SheetTrigger>
-            <SheetContent side={"left"} className="w-[300px]">
-              <SheetHeader>
-                <SheetTitle></SheetTitle>
-                <SheetDescription></SheetDescription>
-              </SheetHeader>
-              <div className="font-bold">GEHA Booking</div>
-              <SheetFooter className="text-base space-y-4 pt-4 ">
-                <SheetClose asChild>
-                  <>
-                    <div className="text-blue-500 space-y-4 mt-4">
-                      <li>
-                        <Link to="/therapy">Home</Link>
-                      </li>
-                      <li>
-                        <Link to="/therapy">Therapy Booking</Link>
-                      </li>
-                      <li>
-                        <Link to="/underdevelopment">Visitor Booking</Link>
-                      </li>
-                      <li>
-                        <Link to="/underdevelopment">Setting</Link>
-                      </li>
-                      <li>
-                        <Link to="/login">Login</Link>
-                      </li>
-                      <li>
-                        <Link to="/references">References</Link>
-                      </li>
-                    </div>
-                  </>
-                </SheetClose>
-              </SheetFooter>
-            </SheetContent>
-          </Sheet>
-        </div>
-
-        <span className="ml-2" style={{ verticalAlign: "top" }}>
-          Therapy Booking
-        </span>
-
+      <div className="bg-slate-700 pt-5 px-4 text-slate-200 font-bold h-16">
+        <Link to="/">
+          <ArrowLeftIcon className="inline mr-4 mobilebackbtn" />
+        </Link>
+        <h3 className="text-base font-bold inline">Therapy Booking</h3>
         <span style={{ float: "right" }}>en</span>
       </div>
-      <div className="banner" />
-
-      <div className="p-4">
-        <p className="text-md font-bold pb-2">Your Appointments:</p>
-        <Card className="p-4 text-sm space-y-2">
-          <li>
-            Wed 20/03/2024 2.00PM
-            <span className="text-blue-500 underline pl-2 font-semibold">
-              Details
-            </span>
-            <span className="text-red-400 underline pl-2 font-semibold">
-              Cancel
-            </span>
-          </li>
-          <li>
-            Thu 28/03/2024 3.00PM
-            <span className="text-blue-500 underline pl-2 font-semibold">
-              Details
-            </span>
-            <span className="text-red-400 underline pl-2 font-semibold">
-              Cancel
-            </span>
-          </li>
-          <li>
-            Wed 03/04/2024 3.00PM
-            <span className="text-blue-500 underline pl-2 font-semibold">
-              Details
-            </span>
-            <span className="text-red-400 underline pl-2 font-semibold">
-              Cancel
-            </span>
-          </li>
-        </Card>
-      </div>
-
       <div className="mt-2 p-4">
         <p className="text-md font-bold pb-2">New Appointment:</p>
         <Card className="p-4 text-sm space-y-2">
