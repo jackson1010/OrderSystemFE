@@ -7,8 +7,6 @@ import SampleShadCnUi from "../References/SampleShadCnUi";
 import UnderDevelopment from "../UnderDevelopment";
 import "./styles.css";
 import {
-  BookHeartIcon,
-  BookUserIcon,
   HomeIcon,
   LinkIcon,
   LogOutIcon,
@@ -28,19 +26,6 @@ const App = () => {
             <Link to="/" className=" block p-4 hover:bg-slate-700">
               <HomeIcon className="inline" />
               <span className="pl-4">Home</span>
-            </Link>
-
-            <Link to="/therapy" className=" block p-4 hover:bg-slate-700">
-              <BookHeartIcon className="inline" />
-              <span className="pl-4">Therapy Booking</span>
-            </Link>
-
-            <Link
-              to="/underdevelopment"
-              className=" block p-4 hover:bg-slate-700"
-            >
-              <BookUserIcon className="inline" />
-              <span className="pl-4">Visitor Booking</span>
             </Link>
 
             <Link
@@ -66,12 +51,11 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/therapy" element={<TherapyBooking />} />
-            <Route path="/visitor" element={<UnderDevelopment />} />
             <Route path="/login" element={<Login />} />
             <Route path="/shadcnui" element={<SampleShadCnUi />} />
             <Route path="/sampleredux" element={<SampleReduxSagaAxios />} />
-            <Route path="/underdevelopment" element={<UnderDevelopment />} />
             <Route path="/references" element={<References />} />
+            <Route path="/*" element={<UnderDevelopment />} />
           </Routes>
         </div>
       </BrowserRouter>

@@ -30,7 +30,7 @@ const TherapyBooking = () => {
     <div>
       <div className="bg-slate-700 pt-5 px-4 text-slate-200 font-bold h-16">
         <Link to="/">
-          <ArrowLeftIcon className="inline mr-4 mobilebackbtn" />
+          <ArrowLeftIcon className="inline mr-4 backbtn" />
         </Link>
         <h3 className="text-base font-bold inline">Therapy Booking</h3>
         <span style={{ float: "right" }}>en</span>

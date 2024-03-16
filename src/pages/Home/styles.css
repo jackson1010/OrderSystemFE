@@ -4,6 +4,10 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 300px;
+
+  @media (max-width: 800px) {
+    height: 200px;
+  }
 }
 
 .mobilemenubtn {

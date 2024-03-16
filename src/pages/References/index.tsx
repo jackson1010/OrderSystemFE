@@ -1,16 +1,22 @@
 import { Link } from "react-router-dom";
 import "./styles.css";
 import DancingBear from "../../assets/images/dancebear.gif";
-import { SquareCode, Link as LinkIcon, ArrowLeft } from "lucide-react";
+import {
+  SquareCode,
+  Link as LinkIcon,
+  ArrowLeft,
+  ArrowLeftIcon,
+} from "lucide-react";
 
 const References = () => {
   return (
     <>
-      <div className="bg-slate-700 text-slate-200 p-4">
+      <div className="bg-slate-700 pt-5 px-4 text-slate-200 font-bold h-16">
         <Link to="/">
-          <ArrowLeft className="inline mr-4 mobilebackbtn" />
+          <ArrowLeftIcon className="inline mr-4 backbtn" />
         </Link>
         <h3 className="text-base font-bold inline">References</h3>
+        <span style={{ float: "right" }}>en</span>
       </div>
 
       <div className="p-4">
