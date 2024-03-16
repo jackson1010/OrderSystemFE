@@ -5,7 +5,7 @@ import { ArrowLeftIcon } from "lucide-react";
 const UnderDevelopment = () => {
   return (
     <div>
-      <div className="bg-slate-700 pt-5 px-4 text-slate-200 font-bold h-16">
+      <div className="bg-slate-800 pt-5 px-4 text-slate-200 font-bold h-16">
         <Link to="/">
           <ArrowLeftIcon className="inline mr-4 backbtn" />
         </Link>

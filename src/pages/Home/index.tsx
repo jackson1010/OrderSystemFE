@@ -37,13 +37,7 @@ const HomePage = () => {
                   <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <Link to="/therapy">Therapy Booking</Link>
-                </li>
-                <li>
-                  <Link to="/underdevelopment">Visitor Booking</Link>
-                </li>
-                <li>
-                  <Link to="/underdevelopment">Setting</Link>
+                  <Link to="/setting">Setting</Link>
                 </li>
                 <li>
                   <Link to="/login">Login</Link>
@@ -61,12 +55,12 @@ const HomePage = () => {
 
   return (
     <div>
-      <div className="bg-slate-700 pt-5 px-4 text-slate-200 font-bold h-36">
+      <div className="bg-slate-800 pt-5 px-4 text-slate-200 font-bold h-16">
         <span className="mobilemenubtn mr-4">{mobilesheetmenu}</span>
         <span className="align-top">Home Page</span>
         <span style={{ float: "right" }}>en</span>
       </div>
-      {/* <div className="banner" /> */}
+      <div className="banner" />
 
       <div>
         <div className="p-4 pr-1">
