@@ -4,7 +4,6 @@ import DancingBear from "../../assets/images/dancebear.gif";
 import {
   SquareCode,
   Link as LinkIcon,
-  ArrowLeft,
   ArrowLeftIcon,
 } from "lucide-react";
 
