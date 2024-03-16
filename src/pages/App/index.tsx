@@ -6,21 +6,16 @@ import SampleReduxSagaAxios from "../References/SampleReduxSagaAxios";
 import SampleShadCnUi from "../References/SampleShadCnUi";
 import UnderDevelopment from "../UnderDevelopment";
 import "./styles.css";
-import {
-  HomeIcon,
-  LinkIcon,
-  LogOutIcon,
-  SettingsIcon,
-} from "lucide-react";
+import { HomeIcon, LinkIcon, LogOutIcon, SettingsIcon } from "lucide-react";
 import HomePage from "../Home";
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
-        <div className="sidenav bg-slate-800">
+        <div className="sidenav bg-slate-900">
           <div className="px-4 h-16">
-            <p className="font-bold py-5 text-slate-200">GEHA BOOKING APP</p>
+            <p className="font-bold py-5 text-slate-200">GEHA BOOKING</p>
           </div>
           <div className="text-slate-400">
             <Link to="/" className=" block p-4 hover:bg-slate-700">
