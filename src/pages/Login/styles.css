@@ -1,0 +1,15 @@
+.leftbanner {
+  background-image: url("../../assets/images/senior-img1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.5;
+  height: 100vh;
+}
+
+.logotop {
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 50px;
+}

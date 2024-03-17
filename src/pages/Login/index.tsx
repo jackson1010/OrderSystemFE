@@ -1,26 +1,71 @@
-import { ArrowLeftIcon } from "lucide-react";
-import { Link } from "react-router-dom";
+import "./styles.css";
+import GehaLogo from "../../assets/logo/Logo.png";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/data/actions/userAction";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogin = () => {
+    alert("Demo Login , Assume login success...");
+    dispatch(
+      setUser({
+        islogin: true,
+        username: "Sample User",
+        jwttoken: "Sample Token",
+      })
+    );
+    navigate("/");
+  };
+
   return (
-    <>
-      <div className="bg-slate-800 pt-5 px-4 text-slate-200 font-bold h-16">
-        <Link to="/">
-          <ArrowLeftIcon className="inline mr-4 backbtn" />
-        </Link>
-        <h3 className="text-base font-bold inline">Login Page</h3>
-        <span style={{ float: "right" }}>en</span>
+    <div className="flex">
+      <div className="leftbanner bg-slate-500 flex-auto hidden sm:block" />
+      <div className="flex-auto basis-80 sm:flex-grow-0">
+        <img src={GehaLogo} className="logotop w-64" />
+
+        <Input
+          type="email"
+          placeholder="Email"
+          className="w-64 mx-auto mt-12"
+        />
+        <Input
+          type="password"
+          placeholder="Password"
+          className="w-64 mx-auto mt-4"
+        />
+        <Button
+          variant={"default"}
+          className="w-64 mx-auto mt-8 block"
+          onClick={() => handleLogin()}
+        >
+          Log In
+        </Button>
+
+        <div className="w-64 mx-auto block text-sm">
+          <p
+            className="text-blue-500 font-bold mt-8 cursor-pointer"
+            onClick={() => {
+              alert("function under development");
+            }}
+          >
+            Forget Password?
+          </p>
+          <p
+            className="text-blue-500 font-bold mt-3 cursor-pointer"
+            onClick={() => {
+              alert("function under development");
+            }}
+          >
+            Register for GEHA Booking
+          </p>
+        </div>
       </div>
-      <div className="p-2">
-        <h3 className="mb-4 text-lg font-bold">User Login</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis
-          harum architecto doloremque culpa ut ratione, ex animi aspernatur quod
-          assumenda vero unde inventore. Libero dolore vero architecto quaerat
-          reprehenderit illum.
-        </p>
-      </div>
-    </>
+    </div>
   );
 };
 
