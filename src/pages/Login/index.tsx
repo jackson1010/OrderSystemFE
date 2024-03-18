@@ -30,18 +30,18 @@ const Login = () => {
   return (
     <div className="flex">
       <div className="leftbanner bg-slate-500 flex-auto hidden sm:block" />
-      <div className="flex-auto basis-80 sm:flex-grow-0 p-10">
+      <div className="flex-auto basis-80 sm:flex-grow-0 p-8">
         <img src={GehaLogo} className="logotop" />
 
         <Input
           type="email"
           placeholder="Email"
-          className="w-full mx-auto mt-12"
+          className="w-full mx-auto mt-12 text-base"
         />
         <Input
           type="password"
           placeholder="Password"
-          className="w-full mx-auto mt-4"
+          className="w-full mx-auto mt-4 text-base"
         />
         <Button
           variant={"default"}
