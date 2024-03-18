@@ -5,8 +5,13 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/data/actions/userAction";
+import { useEffect } from "react";
 
 const Login = () => {
+  useEffect(() => {
+    alert("This Page is for demo only, Do not enter your real data!!!");
+  }, []);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -25,28 +30,28 @@ const Login = () => {
   return (
     <div className="flex">
       <div className="leftbanner bg-slate-500 flex-auto hidden sm:block" />
-      <div className="flex-auto basis-80 sm:flex-grow-0">
-        <img src={GehaLogo} className="logotop w-64" />
+      <div className="flex-auto basis-80 sm:flex-grow-0 p-10">
+        <img src={GehaLogo} className="logotop" />
 
         <Input
           type="email"
           placeholder="Email"
-          className="w-64 mx-auto mt-12"
+          className="w-full mx-auto mt-12"
         />
         <Input
           type="password"
           placeholder="Password"
-          className="w-64 mx-auto mt-4"
+          className="w-full mx-auto mt-4"
         />
         <Button
           variant={"default"}
-          className="w-64 mx-auto mt-8 block"
+          className="w-full mx-auto mt-8 block"
           onClick={() => handleLogin()}
         >
           Log In
         </Button>
 
-        <div className="w-64 mx-auto block text-sm">
+        <div className="w-full mx-auto block text-sm">
           <p
             className="text-blue-500 font-bold mt-8 cursor-pointer"
             onClick={() => {
