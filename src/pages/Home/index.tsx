@@ -1,62 +1,13 @@
-import { Menu } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import "./styles.css";
-
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const navigate = useNavigate();
 
-  const mobilesheetmenu = (
-    <Sheet key={"left"}>
-      <SheetTrigger>
-        <Menu />
-      </SheetTrigger>
-      <SheetContent side={"left"} className="w-[300px]">
-        <SheetHeader>
-          <SheetTitle></SheetTitle>
-          <SheetDescription></SheetDescription>
-        </SheetHeader>
-        <div className="font-bold">GEHA Booking</div>
-        <SheetFooter className="text-base space-y-4 pt-4 ">
-          <SheetClose asChild>
-            <>
-              <div className="text-blue-500 space-y-4 mt-4">
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/setting">Setting</Link>
-                </li>
-                <li>
-                  <Link to="/login">Login</Link>
-                </li>
-                <li>
-                  <Link to="/references">References</Link>
-                </li>
-              </div>
-            </>
-          </SheetClose>
-        </SheetFooter>
-      </SheetContent>
-    </Sheet>
-  );
-
   return (
     <div>
       <div className="bg-slate-800 pt-5 px-4 text-slate-200 font-bold h-16">
-        <span className="mobilemenubtn mr-4">{mobilesheetmenu}</span>
         <span className="align-top">Home Page</span>
         <span style={{ float: "right" }}>en</span>
       </div>

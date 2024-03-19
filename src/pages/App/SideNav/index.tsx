@@ -26,7 +26,7 @@ const SideNav = () => {
           <span className="pl-4">Home</span>
         </Link>
 
-        <Link to="/underdevelopment" className=" block p-4 hover:bg-slate-700">
+        <Link to="/settings" className=" block p-4 hover:bg-slate-700">
           <SettingsIcon className="inline" />
           <span className="pl-4">Settings</span>
         </Link>

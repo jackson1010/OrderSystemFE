@@ -9,11 +9,3 @@
     height: 200px;
   }
 }
-
-.mobilemenubtn {
-  display: none;
-
-  @media (max-width: 800px) {
-    display: inline;
-  }
-}

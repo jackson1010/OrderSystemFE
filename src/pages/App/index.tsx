@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import References from "../References";
 import TherapyBooking from "../TherapyBooking";
 import Login from "../Login";
@@ -11,9 +11,9 @@ import { useEffect } from "react";
 import { getUser } from "@/data/actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import SideNav from "./SideNav";
+import BottomNav from "./BottomNav";
 
 const App = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const userobj = useSelector((state: any) => state.userReducer);
 
@@ -26,10 +26,9 @@ const App = () => {
     console.log(userobj);
 
     if (userobj.islogin === false) {
-      console.warn("User is not logged in, redirect to login page...")
-      navigate("/login");
+      console.warn("User is not logged in, redirect to login page...");
     } else {
-      console.warn("User is logged in, Welcome back " + userobj.username)
+      console.warn("User is logged in, Welcome back " + userobj.username);
     }
   }, [userobj]);
 
@@ -42,12 +41,13 @@ const App = () => {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/therapy" element={<TherapyBooking />} />
-              <Route path="/login" element={<Login />} />
               <Route path="/shadcnui" element={<SampleShadCnUi />} />
               <Route path="/sampleredux" element={<SampleReduxSagaAxios />} />
               <Route path="/references" element={<References />} />
               <Route path="/*" element={<UnderDevelopment />} />
             </Routes>
+            <div className="h-16 sm:hidden" />
+            <BottomNav />
           </div>
         </>
       ) : (
