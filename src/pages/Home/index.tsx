@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <div>
       <div className="bg-slate-800 pt-5 px-4 text-slate-200 font-bold h-16">
-        <span className="align-top">Home Page</span>
+        <span className="align-top">Appointments</span>
         <span style={{ float: "right" }}>en</span>
       </div>
       <div className="banner" />

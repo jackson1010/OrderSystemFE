@@ -27,7 +27,7 @@ const BottomNav = () => {
           onClick={() => navigate("/")}
         >
           <HomeIcon className="h ml-auto mr-auto" />
-          Home
+          Appointments
         </div>
         <div
           className="flex-1 text-center cursor-pointer hover:text-slate-100"
