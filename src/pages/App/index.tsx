@@ -46,7 +46,7 @@ const App = () => {
               <Route path="/references" element={<References />} />
               <Route path="/*" element={<UnderDevelopment />} />
             </Routes>
-            <div className="h-16 sm:hidden" />
+            <div className="sm:hidden" style={{height:"70px"}} />
             <BottomNav />
           </div>
         </>
