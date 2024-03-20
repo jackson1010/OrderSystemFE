@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import References from "../References";
-import TherapyBooking from "../TherapyBooking";
+import TherapyBooking from "../Appointments/TherapyBooking";
 import Login from "../Login";
 import SampleReduxSagaAxios from "../References/SampleReduxSagaAxios";
 import SampleShadCnUi from "../References/SampleShadCnUi";
 import UnderDevelopment from "../UnderDevelopment";
 import "./styles.css";
-import HomePage from "../Home";
+import Appointments from "../Appointments";
 import { useEffect } from "react";
 import { getUser } from "@/data/actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,7 +39,7 @@ const App = () => {
           <SideNav />
           <div className="sidecontent">
             <Routes>
-              <Route path="/" element={<HomePage />} />
+              <Route path="/" element={<Appointments />} />
               <Route path="/therapy" element={<TherapyBooking />} />
               <Route path="/shadcnui" element={<SampleShadCnUi />} />
               <Route path="/sampleredux" element={<SampleReduxSagaAxios />} />
