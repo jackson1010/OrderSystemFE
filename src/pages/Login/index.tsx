@@ -102,7 +102,7 @@ const Login = () => {
               <br />
               <Drawer>
                 <DrawerTrigger>
-                  <p className="text-blue-500 font-base mt-6 cursor-pointer underline">
+                  <p className="text-blue-500 font-base mt-3 cursor-pointer underline">
                     Forget Password
                   </p>
                 </DrawerTrigger>
