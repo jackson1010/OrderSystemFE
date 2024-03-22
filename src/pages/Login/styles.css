@@ -13,3 +13,17 @@
   margin-right: auto;
   padding-left: 50px;
 }
+
+.mobilewidget{
+  display: none;
+  @media (max-width: 800px) {
+    display: block;
+  }
+}
+
+.desktopwidget{
+  display: block;
+  @media (max-width: 800px) {
+    display: none;
+  }
+}
