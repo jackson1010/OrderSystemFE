@@ -93,7 +93,7 @@ const Login = () => {
                     Sign Up for Geha Booking
                   </p>
                 </DrawerTrigger>
-                <DrawerContent className="pb-8">
+                <DrawerContent className="pb-8" style={{ minHeight: "50%" }}>
                   <DrawerHeader>
                     <CreateNewAccount />
                   </DrawerHeader>
@@ -106,7 +106,7 @@ const Login = () => {
                     Forget Password
                   </p>
                 </DrawerTrigger>
-                <DrawerContent className="pb-8">
+                <DrawerContent className="pb-8" style={{ minHeight: "50%" }}>
                   <DrawerHeader>
                     <ForgetPassword />
                   </DrawerHeader>
