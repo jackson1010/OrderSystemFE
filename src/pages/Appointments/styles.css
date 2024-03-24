@@ -1,6 +1,6 @@
 .banner {
-  background-image: url("../../assets/images/banner1.jpg");
-  background-position: center;
+  background-image: url("../../assets/images/background/topbanner.jpg");
+  background-position: right;
   background-repeat: no-repeat;
   background-size: cover;
   height: 300px;

@@ -7,21 +7,22 @@ const HomePage = () => {
 
   return (
     <div>
-      <div className="bg-slate-800 pt-5 px-4">
-        <div className="font-bold text-slate-200">
-          <span className="align-top">GEHA Appointments</span>
-          <span style={{ float: "right" }}>en</span>
-        </div>
+      <div className="banner">
+        <div className="pt-5 px-4">
+          <div className="font-bold text-slate-800">
+            <span className="align-top">GEHA Appointments</span>
+            <span style={{ float: "right" }}>en</span>
+          </div>
 
-        <div className="text-xs text-slate-400 mt-4 pb-8 text-justify">
-          <p>
-            Should you encounter any difficulties with your booking, feel free
-            to reach out to our customer service team at 98765431 during our
-            operating hours from 9am to 6pm.
-          </p>
+          {/* <div className="text-xs text-slate-600 mt-4 pb-8 text-justify">
+            <p>
+              Should you encounter any difficulties with your booking, feel free
+              to reach out to our customer service team at 98765431 during our
+              operating hours from 9am to 6pm.
+            </p>
+          </div> */}
         </div>
       </div>
-      {/* <div className="banner" /> */}
 
       <div>
         <div className="p-4 pr-1">

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import UnderDevimg from "../../assets/images/underdev.gif";
+import UnderDevimg from "../../assets/images/gif/underdev.gif";
 import { ArrowLeftIcon } from "lucide-react";
 
 const UnderDevelopment = () => {

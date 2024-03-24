@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./styles.css";
-import DancingBear from "../../assets/images/dancebear.gif";
+import DancingBear from "../../assets/images/gif/dancebear.gif";
 import {
   SquareCode,
   Link as LinkIcon,
