@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
+import { BookUserIcon, CalendarHeartIcon } from "lucide-react";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -26,9 +27,37 @@ const HomePage = () => {
 
       <div>
         <div className="p-4 pr-1">
-          <p className="text-md font-bold pb-4">Book Appointment</p>
+          <p className="text-sm font-bold pb-4 text-slate-700">New Booking</p>
           <div className="flex flex-wrap">
-            <Card
+            <div className="mr-4">
+              <Card
+                className="basis-10 shrink-0 grow-0 max-w-none bg-purple-100 text-slate-700 p-4 sm:hover:bg-purple-200 text-sm cursor-pointer"
+                onClick={() => {
+                  navigate("/therapy");
+                }}
+              >
+                <CalendarHeartIcon className="m-auto w-8 h-8" />
+              </Card>
+              <h3 className="text-xs text-center font-semibold text-slate-500">
+                Therapy
+              </h3>
+            </div>
+
+            <div className="mr-4">
+              <Card
+                className="basis-10 shrink-0 grow-0 max-w-none bg-blue-100 text-slate-700 p-4 sm:hover:bg-blue-200 text-sm cursor-pointer"
+                onClick={() => {
+                  navigate("/visitor");
+                }}
+              >
+                <BookUserIcon className="m-auto w-8 h-8" />
+              </Card>
+              <h3 className="text-xs text-center font-semibold text-slate-500">
+                Visitor
+              </h3>
+            </div>
+
+            {/* <Card
               className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-200 p-4 sm:hover:bg-slate-300 text-sm cursor-pointer mr-3 mb-3"
               onClick={() => {
                 navigate("/therapy");
@@ -47,14 +76,14 @@ const HomePage = () => {
               <h3 className="font-bold">Visitor Booking</h3>
               <p className="my-2">Book Date and time for your next visits.</p>
               <p className="mt-1 text-slate-600 underline">Click to Book</p>
-            </Card>
+            </Card> */}
           </div>
         </div>
         <div className="p-4 pr-1">
-          <p className="text-md font-bold pb-4">Your Appointments</p>
+          <p className="text-sm font-bold pb-4">Your Appointments</p>
           <div className="flex flex-wrap">
             <Card
-              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-blue-100 p-4 sm:hover:bg-blue-200 text-sm cursor-pointer mr-3 mb-3"
+              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-50 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3"
               onClick={() => {
                 navigate("/therapydetails");
               }}
@@ -66,7 +95,7 @@ const HomePage = () => {
               <p className="mt-1 text-slate-600 underline">Click for details</p>
             </Card>
             <Card
-              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-blue-100 p-4 sm:hover:bg-blue-200 text-sm cursor-pointer mr-3 mb-3"
+              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-50 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3"
               onClick={() => {
                 navigate("/therapydetails");
               }}
@@ -78,7 +107,7 @@ const HomePage = () => {
               <p className="mt-1 text-slate-600 underline">Click for details</p>
             </Card>
             <Card
-              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-blue-100 p-4 sm:hover:bg-blue-200 text-sm cursor-pointer mr-3 mb-3"
+              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-50 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3"
               onClick={() => {
                 navigate("/visitordetails");
               }}

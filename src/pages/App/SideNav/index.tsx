@@ -24,7 +24,7 @@ const SideNav = () => {
       <div className="text-slate-400">
         <Link to="/" className=" block p-4 hover:bg-slate-700">
           <HomeIcon className="inline" />
-          <span className="pl-4">Geha Bookings</span>
+          <span className="pl-4">Home</span>
         </Link>
 
         <Link to="/settings" className=" block p-4 hover:bg-slate-700">

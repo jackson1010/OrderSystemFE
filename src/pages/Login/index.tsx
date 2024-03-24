@@ -41,7 +41,7 @@ const Login = () => {
       <div className="leftbanner bg-slate-500 flex-auto hidden sm:block" />
       <div className="flex-auto basis-80 sm:flex-grow-0 p-8">
         <>
-          <img src={GehaLogo} className="logotop" />
+          <img src={GehaLogo} className="logotop" autoFocus />
 
           <Input
             type="email"
