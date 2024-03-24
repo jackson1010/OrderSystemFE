@@ -10,7 +10,7 @@ const HomePage = () => {
       <div className="banner">
         <div className="pt-5 px-4">
           <div className="font-bold text-slate-800">
-            <span className="align-top">GEHA Appointments</span>
+            <span className="align-top">GEHA Bookings</span>
             <span style={{ float: "right" }}>en</span>
           </div>
 
@@ -29,7 +29,7 @@ const HomePage = () => {
           <p className="text-md font-bold pb-4">Book Appointment</p>
           <div className="flex flex-wrap">
             <Card
-              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-200 p-4 hover:bg-slate-300 text-sm cursor-pointer mr-3 mb-3"
+              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-200 p-4 sm:hover:bg-slate-300 text-sm cursor-pointer mr-3 mb-3"
               onClick={() => {
                 navigate("/therapy");
               }}
@@ -39,7 +39,7 @@ const HomePage = () => {
               <p className="mt-1 text-slate-600 underline">Click to Book</p>
             </Card>
             <Card
-              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-200 p-4 hover:bg-slate-300 text-sm cursor-pointer mr-3 mb-3"
+              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-200 p-4 sm:hover:bg-slate-300 text-sm cursor-pointer mr-3 mb-3"
               onClick={() => {
                 navigate("/visitor");
               }}
@@ -54,7 +54,7 @@ const HomePage = () => {
           <p className="text-md font-bold pb-4">Your Appointments</p>
           <div className="flex flex-wrap">
             <Card
-              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-blue-100 p-4 hover:bg-blue-200 text-sm cursor-pointer mr-3 mb-3"
+              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-blue-100 p-4 sm:hover:bg-blue-200 text-sm cursor-pointer mr-3 mb-3"
               onClick={() => {
                 navigate("/therapydetails");
               }}
@@ -66,7 +66,7 @@ const HomePage = () => {
               <p className="mt-1 text-slate-600 underline">Click for details</p>
             </Card>
             <Card
-              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-blue-100 p-4 hover:bg-blue-200 text-sm cursor-pointer mr-3 mb-3"
+              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-blue-100 p-4 sm:hover:bg-blue-200 text-sm cursor-pointer mr-3 mb-3"
               onClick={() => {
                 navigate("/therapydetails");
               }}
@@ -78,7 +78,7 @@ const HomePage = () => {
               <p className="mt-1 text-slate-600 underline">Click for details</p>
             </Card>
             <Card
-              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-blue-100 p-4 hover:bg-blue-200 text-sm cursor-pointer mr-3 mb-3"
+              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-blue-100 p-4 sm:hover:bg-blue-200 text-sm cursor-pointer mr-3 mb-3"
               onClick={() => {
                 navigate("/visitordetails");
               }}

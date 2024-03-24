@@ -20,14 +20,14 @@ const BottomNav = () => {
   };
 
   return (
-    <div className="bg-slate-800 text-slate-400 bottomnav p-1">
+    <div className="bg-slate-800 text-slate-400 bottomnav p-1 pt-2">
       <div className="h-11 flex text-xs">
         <div
           className="flex-1 text-center cursor-pointer hover:text-slate-100"
           onClick={() => navigate("/")}
         >
           <HomeIcon className="h ml-auto mr-auto" />
-          Appointments
+          Home
         </div>
         <div
           className="flex-1 text-center cursor-pointer hover:text-slate-100"
