@@ -1,7 +1,11 @@
 import { Card } from "@/components/ui/card";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
-import { BookUserIcon, CalendarHeartIcon } from "lucide-react";
+import {
+  BookUserIcon,
+  CalendarHeartIcon,
+  PhoneOutgoingIcon,
+} from "lucide-react";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -14,47 +18,53 @@ const HomePage = () => {
             <span className="align-top">GEHA Bookings</span>
             <span style={{ float: "right" }}>en</span>
           </div>
-
-          {/* <div className="text-xs text-slate-600 mt-4 pb-8 text-justify">
-            <p>
-              Should you encounter any difficulties with your booking, feel free
-              to reach out to our customer service team at 98765431 during our
-              operating hours from 9am to 6pm.
-            </p>
-          </div> */}
         </div>
       </div>
 
       <div>
         <div className="p-4 pr-1">
-          <p className="text-sm font-bold pb-4 text-slate-700">New Booking</p>
+          <p className="text-sm font-bold pb-4 text-slate-700">Services</p>
           <div className="flex flex-wrap">
-            <div className="mr-4">
+            <div className="mr-4" style={{ width: "66px" }}>
               <Card
-                className="basis-10 shrink-0 grow-0 max-w-none bg-purple-100 text-slate-700 p-4 sm:hover:bg-purple-200 text-sm cursor-pointer"
+                className="basis-10 shrink-0 grow-0 max-w-none bg-blue-200 text-slate-700 p-4 sm:hover:bg-blue-300 text-sm cursor-pointer"
                 onClick={() => {
                   navigate("/therapy");
                 }}
               >
                 <CalendarHeartIcon className="m-auto w-8 h-8" />
               </Card>
-              <h3 className="text-xs text-center font-semibold text-slate-500">
-                Therapy
-              </h3>
+              <p className="text-xs text-center font-semibold text-slate-500">
+                Therapy Booking
+              </p>
             </div>
 
-            <div className="mr-4">
+            <div className="mr-4" style={{ width: "66px" }}>
               <Card
-                className="basis-10 shrink-0 grow-0 max-w-none bg-blue-100 text-slate-700 p-4 sm:hover:bg-blue-200 text-sm cursor-pointer"
+                className="basis-10 shrink-0 grow-0 max-w-none bg-blue-200 text-slate-700 p-4 sm:hover:bg-blue-300 text-sm cursor-pointer"
                 onClick={() => {
                   navigate("/visitor");
                 }}
               >
                 <BookUserIcon className="m-auto w-8 h-8" />
               </Card>
-              <h3 className="text-xs text-center font-semibold text-slate-500">
-                Visitor
-              </h3>
+              <p className="text-xs text-center font-semibold text-slate-500">
+                Visitor Booking
+              </p>
+            </div>
+
+            <div className="mr-4" style={{ width: "66px" }}>
+              <Card
+                className="basis-10 shrink-0 grow-0 max-w-none bg-blue-200 text-slate-700 p-4 sm:hover:bg-blue-300 text-sm cursor-pointer"
+                onClick={() => {
+                  navigate("/customersupport");
+                }}
+              >
+                <PhoneOutgoingIcon className="m-auto w-8 h-8" />
+              </Card>
+              <p className="text-xs text-center font-semibold text-slate-500">
+                Customer Support
+              </p>
             </div>
 
             {/* <Card
