@@ -14,7 +14,7 @@ const HomePage = () => {
     <div>
       <div className="banner">
         <div className="pt-5 px-4">
-          <div className="font-bold text-slate-800">
+          <div className="font-bold text-slate-200">
             <span className="align-top">GEHA Bookings</span>
             <span style={{ float: "right" }}>en</span>
           </div>
