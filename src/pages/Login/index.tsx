@@ -1,5 +1,4 @@
 import "./styles.css";
-import { useEffect } from "react";
 import CreateNewAccount from "./CreateNewAccount";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import {
@@ -15,12 +14,10 @@ import GehaLogo from "../../assets/logo/Logo.png";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import ForgetPassword from "./ForgetPassword";
+import { Card } from "@/components/ui/card";
+import { TriangleAlertIcon } from "lucide-react";
 
 const Login = () => {
-  useEffect(() => {
-    alert("This Page is for demo only, Do not enter your personal details!!!");
-  }, []);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -113,6 +110,15 @@ const Login = () => {
                 </DrawerContent>
               </Drawer>
             </div>
+
+            <Card className="mt-8 p-2 text-xs bg-red-100 text-red-500 font-bold text-center">
+              <TriangleAlertIcon className="m-auto" />
+              <p>Warning !!!</p>
+              <div className="font-normal mt-2">
+                <p>This is a Demo Web Application</p>
+                <p>Do not enter your personal info !!!</p>
+              </div>
+            </Card>
           </div>
         </>
       </div>

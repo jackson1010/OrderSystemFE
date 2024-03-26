@@ -66,34 +66,13 @@ const HomePage = () => {
                 Customer Support
               </p>
             </div>
-
-            {/* <Card
-              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-200 p-4 sm:hover:bg-slate-300 text-sm cursor-pointer mr-3 mb-3"
-              onClick={() => {
-                navigate("/therapy");
-              }}
-            >
-              <h3 className="font-bold">Therapy Booking</h3>
-              <p className="my-2">Select your therapist, book date and time</p>
-              <p className="mt-1 text-slate-600 underline">Click to Book</p>
-            </Card>
-            <Card
-              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-200 p-4 sm:hover:bg-slate-300 text-sm cursor-pointer mr-3 mb-3"
-              onClick={() => {
-                navigate("/visitor");
-              }}
-            >
-              <h3 className="font-bold">Visitor Booking</h3>
-              <p className="my-2">Book Date and time for your next visits.</p>
-              <p className="mt-1 text-slate-600 underline">Click to Book</p>
-            </Card> */}
           </div>
         </div>
         <div className="p-4 pr-1">
           <p className="text-sm font-bold pb-4">Your Appointments</p>
           <div className="flex flex-wrap">
             <Card
-              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-50 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3"
+              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-100 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3"
               onClick={() => {
                 navigate("/therapydetails");
               }}
@@ -105,7 +84,7 @@ const HomePage = () => {
               <p className="mt-1 text-slate-600 underline">Click for details</p>
             </Card>
             <Card
-              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-50 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3"
+              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-100 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3"
               onClick={() => {
                 navigate("/therapydetails");
               }}
@@ -117,7 +96,7 @@ const HomePage = () => {
               <p className="mt-1 text-slate-600 underline">Click for details</p>
             </Card>
             <Card
-              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-50 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3"
+              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-100 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3"
               onClick={() => {
                 navigate("/visitordetails");
               }}
