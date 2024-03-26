@@ -1,4 +1,4 @@
-import { Card } from "@/components/ui/card";
+
 import {
   Select,
   SelectContent,
@@ -36,105 +36,85 @@ const TherapyBooking = () => {
         <span style={{ float: "right" }}>en</span>
       </div>
       <div className="mt-2 p-4">
-        <p className="text-md font-bold pb-2">New Appointment:</p>
-        <Card className="p-4 text-sm space-y-2">
-          <p>
-            Therapist:
-            <Select>
-              <SelectTrigger className="max-w-72">
-                <SelectValue placeholder="Select Therapist" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="001">001 - Happy Bear</SelectItem>
-                <SelectItem value="002">002 - Angry Tiger</SelectItem>
-                <SelectItem value="003">003 - Sleepy Dog</SelectItem>
-                <SelectItem value="004">004 - Tasty Chicken</SelectItem>
-                <SelectItem value="005">005 - Crazy Frog</SelectItem>
-              </SelectContent>
-            </Select>
-          </p>
-          <p>Date:</p>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant={"outline"}
-                className={cn(
-                  "w-[288px] justify-start text-left font-normal",
-                  !date && "text-muted-foreground"
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, "PPP") : <span>Pick a date</span>}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0">
-              <Calendar
-                mode="single"
-                selected={date}
-                onSelect={setDate}
-                initialFocus
-              />
-            </PopoverContent>
-          </Popover>
-          <p>Time:</p>
-          <Select>
-            <SelectTrigger className="max-w-72">
-              <SelectValue placeholder="Time Slot" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="0900" disabled>
-                09:00AM
-              </SelectItem>
-              <SelectItem value="1000" disabled>
-                10:00AM
-              </SelectItem>
-              <SelectItem value="1100" disabled>
-                11:00AM
-              </SelectItem>
-              <SelectItem value="1200">12:00PM</SelectItem>
-              <SelectItem value="1300">01:00PM</SelectItem>
-              <SelectItem value="1400">02:00PM</SelectItem>
-              <SelectItem value="1500" disabled>
-                03:00PM
-              </SelectItem>
-              <SelectItem value="1600" disabled>
-                04:00PM
-              </SelectItem>
-              <SelectItem value="1700">05:00PM</SelectItem>
-            </SelectContent>
-          </Select>
+        <p>Select Therapist: </p>
+        <Select>
+          <SelectTrigger className="max-w-72">
+            <SelectValue placeholder="Therapist" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="001">001 - Happy Bear</SelectItem>
+            <SelectItem value="002">002 - Angry Tiger</SelectItem>
+            <SelectItem value="003">003 - Sleepy Dog</SelectItem>
+            <SelectItem value="004">004 - Tasty Chicken</SelectItem>
+            <SelectItem value="005">005 - Crazy Frog</SelectItem>
+          </SelectContent>
+        </Select>
 
-          <p>Remarks:</p>
-          <Textarea className="max-w-72" />
+        <br />
 
-          <br />
+        <p>Date:</p>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant={"outline"}
+              className={cn(
+                "w-[288px] justify-start text-left font-normal",
+                !date && "text-muted-foreground"
+              )}
+            >
+              <CalendarIcon className="mr-2 h-4 w-4" />
+              {date ? format(date, "PPP") : <span>Pick a date</span>}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0">
+            <Calendar
+              mode="single"
+              selected={date}
+              onSelect={setDate}
+              initialFocus
+            />
+          </PopoverContent>
+        </Popover>
 
-          <Button>Confirm Booking</Button>
-        </Card>
-      </div>
+        <br />
+        <br />
 
-      <div className="mt-2 p-4 mb-10">
-        <p className="text-md font-bold pb-2 text-red-500">Notes:</p>
-        <Card className="p-4 text-sm space-y-2 bg-red-100">
-          <li>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores
-            eligendi id sed? Repellendus neque explicabo sint quam accusantium,
-            aliquid quidem, quod perspiciatis totam error nam inventore itaque
-            corporis dicta vero!
-          </li>
-          <li>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam
-            soluta vel tenetur aspernatur dolore molestiae aut sapiente iure
-            quae, accusamus odit deleniti cupiditate dignissimos pariatur
-            consectetur reiciendis, officiis delectus labore.
-          </li>
-          <li>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque
-            aliquid dolore minus cum doloremque similique ut delectus eveniet,
-            et officiis quasi aliquam sunt placeat exercitationem. Sed quasi
-            culpa consectetur. Laboriosam!
-          </li>
-        </Card>
+        <p>Time:</p>
+        <Select>
+          <SelectTrigger className="max-w-72">
+            <SelectValue placeholder="Time Slot" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="0900" disabled>
+              09:00AM
+            </SelectItem>
+            <SelectItem value="1000" disabled>
+              10:00AM
+            </SelectItem>
+            <SelectItem value="1100" disabled>
+              11:00AM
+            </SelectItem>
+            <SelectItem value="1200">12:00PM</SelectItem>
+            <SelectItem value="1300">01:00PM</SelectItem>
+            <SelectItem value="1400">02:00PM</SelectItem>
+            <SelectItem value="1500" disabled>
+              03:00PM
+            </SelectItem>
+            <SelectItem value="1600" disabled>
+              04:00PM
+            </SelectItem>
+            <SelectItem value="1700">05:00PM</SelectItem>
+          </SelectContent>
+        </Select>
+
+        <br />
+
+        <p>Remarks:</p>
+        <Textarea className="max-w-72" />
+
+        <br />
+
+        <Button>Confirm Booking</Button>
       </div>
     </div>
   );

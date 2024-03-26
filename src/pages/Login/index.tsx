@@ -39,11 +39,18 @@ const Login = () => {
       <div className="flex-auto basis-80 sm:flex-grow-0 p-8">
         <>
           <img src={GehaLogo} className="logotop" autoFocus />
-
+          <Card className="mt-6 mb-2 p-2 text-xs bg-red-100 text-red-500 font-bold text-center">
+            <TriangleAlertIcon className="m-auto" />
+            <p>Warning !!!</p>
+            <div className="font-normal mt-2">
+              <p>This is a Demo Web Application</p>
+              <p>Do not enter your personal info !!!</p>
+            </div>
+          </Card>
           <Input
             type="email"
             placeholder="Email"
-            className="w-full mx-auto mt-12 text-base"
+            className="w-full mx-auto mt-4 text-base"
           />
           <Input
             type="password"
@@ -110,15 +117,6 @@ const Login = () => {
                 </DrawerContent>
               </Drawer>
             </div>
-
-            <Card className="mt-8 p-2 text-xs bg-red-100 text-red-500 font-bold text-center">
-              <TriangleAlertIcon className="m-auto" />
-              <p>Warning !!!</p>
-              <div className="font-normal mt-2">
-                <p>This is a Demo Web Application</p>
-                <p>Do not enter your personal info !!!</p>
-              </div>
-            </Card>
           </div>
         </>
       </div>
