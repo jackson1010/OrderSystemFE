@@ -1,4 +1,3 @@
-
 import {
   Select,
   SelectContent,
@@ -20,7 +19,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 
 const TherapyBooking = () => {
@@ -28,18 +27,19 @@ const TherapyBooking = () => {
 
   return (
     <div>
-      <div className="bg-slate-800 pt-5 px-4 text-slate-200 font-bold h-16">
+      <div className="bg-slate-700 pt-5 px-4 text-slate-200 font-bold h-16">
         <Link to="/">
           <ArrowLeftIcon className="inline mr-4 backbtn" />
         </Link>
         <h3 className="text-base font-bold inline">Therapy Booking</h3>
         <span style={{ float: "right" }}>en</span>
       </div>
+      <div className="therapybanner" />
       <div className="mt-2 p-4">
-        <p>Select Therapist: </p>
+        <p className="font-bold pb-2 text-sm">Therapist: </p>
         <Select>
           <SelectTrigger className="max-w-72">
-            <SelectValue placeholder="Therapist" />
+            <SelectValue placeholder="Select Therapist" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="001">001 - Happy Bear</SelectItem>
@@ -52,7 +52,7 @@ const TherapyBooking = () => {
 
         <br />
 
-        <p>Date:</p>
+        <p className="font-bold pb-2 text-sm">Date:</p>
         <Popover>
           <PopoverTrigger asChild>
             <Button
@@ -79,42 +79,41 @@ const TherapyBooking = () => {
         <br />
         <br />
 
-        <p>Time:</p>
-        <Select>
-          <SelectTrigger className="max-w-72">
-            <SelectValue placeholder="Time Slot" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="0900" disabled>
-              09:00AM
-            </SelectItem>
-            <SelectItem value="1000" disabled>
-              10:00AM
-            </SelectItem>
-            <SelectItem value="1100" disabled>
-              11:00AM
-            </SelectItem>
-            <SelectItem value="1200">12:00PM</SelectItem>
-            <SelectItem value="1300">01:00PM</SelectItem>
-            <SelectItem value="1400">02:00PM</SelectItem>
-            <SelectItem value="1500" disabled>
-              03:00PM
-            </SelectItem>
-            <SelectItem value="1600" disabled>
-              04:00PM
-            </SelectItem>
-            <SelectItem value="1700">05:00PM</SelectItem>
-          </SelectContent>
-        </Select>
+        <p className="font-bold pb-3  text-sm">Slots Available:</p>
+        <Badge className="cursor-pointer bg-blue-300 hover:bg-blue-600 mr-2 mb-2">
+          09:00AM
+        </Badge>
+        <Badge className="cursor-pointer bg-blue-300 hover:bg-blue-600 mr-2 mb-2">
+          10:00AM
+        </Badge>
+        <Badge className="cursor-pointer bg-blue-300 hover:bg-blue-600 mr-2 mb-2">
+          11:00AM
+        </Badge>
+        <Badge className="cursor-pointer bg-blue-300 hover:bg-blue-600 mr-2 mb-2">
+          12:00AM
+        </Badge>
+        <Badge className="cursor-pointer bg-blue-300 hover:bg-blue-600 mr-2 mb-2">
+          01:00PM
+        </Badge>
+        <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
+          02:00PM
+        </Badge>
+        <Badge className="cursor-pointer bg-blue-300 hover:bg-blue-600 mr-2 mb-2">
+          03:00PM
+        </Badge>
+        <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
+          04:00PM
+        </Badge>
+        <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
+          05:00PM
+        </Badge>
+        <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
+          06:00PM
+        </Badge>
 
         <br />
 
-        <p>Remarks:</p>
-        <Textarea className="max-w-72" />
-
-        <br />
-
-        <Button>Confirm Booking</Button>
+        <Button className="mt-8 mb-12">Proceed Next</Button>
       </div>
     </div>
   );

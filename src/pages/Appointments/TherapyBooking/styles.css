@@ -1,9 +1,13 @@
-.banner {
-  background-image: url("../../assets/images/banner1.jpg");
+.therapybanner {
+  background-image: url("../../../assets/images/background/therapy.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   height: 300px;
+
+  @media (max-width: 800px) {
+    height: 180px;
+  }
 }
 
 .backbtn {

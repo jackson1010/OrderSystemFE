@@ -38,8 +38,7 @@ const Login = () => {
       <div className="leftbanner bg-slate-500 flex-auto hidden sm:block" />
       <div className="flex-auto basis-80 sm:flex-grow-0 p-8">
         <>
-          <img src={GehaLogo} className="logotop" autoFocus />
-          <Card className="mt-6 mb-2 p-2 text-xs bg-red-100 text-red-500 font-bold text-center">
+          <Card className="mb-2 p-2 text-xs bg-red-100 text-red-500 font-bold text-center">
             <TriangleAlertIcon className="m-auto" />
             <p>Warning !!!</p>
             <div className="font-normal mt-2">
@@ -47,10 +46,11 @@ const Login = () => {
               <p>Do not enter your personal info !!!</p>
             </div>
           </Card>
+          <img src={GehaLogo} className="logotop" autoFocus />
           <Input
             type="email"
             placeholder="Email"
-            className="w-full mx-auto mt-4 text-base"
+            className="w-full mx-auto mt-8 text-base"
           />
           <Input
             type="password"
