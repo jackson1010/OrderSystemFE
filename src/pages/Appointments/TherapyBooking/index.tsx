@@ -21,6 +21,8 @@ import {
 
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 
 const TherapyBooking = () => {
   const [date, setDate] = useState<Date>();
@@ -36,6 +38,20 @@ const TherapyBooking = () => {
       </div>
       <div className="therapybanner" />
       <div className="mt-2 p-4">
+        <p className="font-bold pb-2 text-sm">Category: </p>
+        <Select>
+          <SelectTrigger className="max-w-72">
+            <SelectValue placeholder="Select Category" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="new">
+              Primary Assessment (New Referral)
+            </SelectItem>
+            <SelectItem value="followup">Therapy Appointment</SelectItem>
+          </SelectContent>
+        </Select>
+
+        <br />
         <p className="font-bold pb-2 text-sm">Therapist: </p>
         <Select>
           <SelectTrigger className="max-w-72">
@@ -79,7 +95,7 @@ const TherapyBooking = () => {
         <br />
         <br />
 
-        <p className="font-bold pb-3  text-sm">Slots Available:</p>
+        <p className="font-bold pb-3  text-sm">Time Slot:</p>
         <Badge className="cursor-pointer bg-blue-300 hover:bg-blue-600 mr-2 mb-2">
           09:00AM
         </Badge>
@@ -111,6 +127,19 @@ const TherapyBooking = () => {
           06:00PM
         </Badge>
 
+        <br />
+
+        <p className="font-bold pb-3 mt-4  text-sm">Transportation:</p>
+        <RadioGroup defaultValue="">
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="default" id="r1" />
+            <Label htmlFor="r1">In-house scheduled transportation</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="comfortable" id="r2" />
+            <Label htmlFor="r2">Self arranged transportation</Label>
+          </div>
+        </RadioGroup>
         <br />
 
         <Button className="mt-8 mb-12">Proceed Next</Button>
