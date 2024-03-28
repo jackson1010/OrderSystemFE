@@ -75,7 +75,7 @@ const TherapyBooking = () => {
             </Select>
 
             <br />
-            <p className="font-semibold pb-2 text-sm">Therapist: </p>
+            <p className="font-semibold pb-2 text-sm text-slate-600">Therapist: </p>
             <Select>
               <SelectTrigger className="max-w-72">
                 <SelectValue placeholder="Select Therapist" />
@@ -91,7 +91,7 @@ const TherapyBooking = () => {
 
             <br />
 
-            <p className="font-semibold pb-2 text-sm">Date:</p>
+            <p className="font-semibold pb-2 text-sm text-slate-600">Date:</p>
             <Popover>
               <PopoverTrigger asChild>
                 <Button
