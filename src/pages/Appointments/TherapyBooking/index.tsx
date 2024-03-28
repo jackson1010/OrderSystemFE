@@ -9,7 +9,6 @@ import { useState } from "react";
 import "./styles.css";
 import { format } from "date-fns";
 import { ArrowLeftIcon, Calendar as CalendarIcon } from "lucide-react";
-
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -18,11 +17,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-
+import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
 
 const TherapyBooking = () => {
   const [date, setDate] = useState<Date>();
@@ -37,112 +34,154 @@ const TherapyBooking = () => {
         <span style={{ float: "right" }}>en</span>
       </div>
       <div className="therapybanner" />
-      <div className="mt-2 p-4">
-        <p className="font-bold pb-2 text-sm">Category: </p>
-        <Select>
-          <SelectTrigger className="max-w-72">
-            <SelectValue placeholder="Select Category" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="new">
-              Primary Assessment (New Referral)
-            </SelectItem>
-            <SelectItem value="followup">Therapy Appointment</SelectItem>
-          </SelectContent>
-        </Select>
+      <div className="mt-2 p-4 block gap-4 sm:flex ">
+        <Card className="flex-1 shadow-lg">
+          <h3 className="p-4 font-bold bg-slate-100 text-sm">Booking Form</h3>
+          <hr />
+          <div className="p-4 text-xs">
+            <p className="font-semibold pb-2 text-sm text-slate-600">
+              Category:
+            </p>
+            <Select>
+              <SelectTrigger className="max-w-72">
+                <SelectValue placeholder="Select Category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="new">
+                  Primary Assessment (New Referral)
+                </SelectItem>
+                <SelectItem value="followup">
+                  Therapy Booking (Existing Customer)
+                </SelectItem>
+              </SelectContent>
+            </Select>
 
-        <br />
-        <p className="font-bold pb-2 text-sm">Therapist: </p>
-        <Select>
-          <SelectTrigger className="max-w-72">
-            <SelectValue placeholder="Select Therapist" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="001">001 - Happy Bear</SelectItem>
-            <SelectItem value="002">002 - Angry Tiger</SelectItem>
-            <SelectItem value="003">003 - Sleepy Dog</SelectItem>
-            <SelectItem value="004">004 - Tasty Chicken</SelectItem>
-            <SelectItem value="005">005 - Crazy Frog</SelectItem>
-          </SelectContent>
-        </Select>
+            <br />
+            <p className="font-semibold pb-2 text-sm text-slate-600">
+              Transportation:
+            </p>
+            <Select>
+              <SelectTrigger className="max-w-72">
+                <SelectValue placeholder="Select Category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="inhouse">
+                  In-house scheduled transportation
+                </SelectItem>
+                <SelectItem value="selftransport">
+                  Self arranged transportation
+                </SelectItem>
+              </SelectContent>
+            </Select>
 
-        <br />
+            <br />
+            <p className="font-semibold pb-2 text-sm">Therapist: </p>
+            <Select>
+              <SelectTrigger className="max-w-72">
+                <SelectValue placeholder="Select Therapist" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="001">001 - Happy Bear</SelectItem>
+                <SelectItem value="002">002 - Angry Tiger</SelectItem>
+                <SelectItem value="003">003 - Sleepy Dog</SelectItem>
+                <SelectItem value="004">004 - Tasty Chicken</SelectItem>
+                <SelectItem value="005">005 - Crazy Frog</SelectItem>
+              </SelectContent>
+            </Select>
 
-        <p className="font-bold pb-2 text-sm">Date:</p>
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant={"outline"}
-              className={cn(
-                "w-[288px] justify-start text-left font-normal",
-                !date && "text-muted-foreground"
-              )}
-            >
-              <CalendarIcon className="mr-2 h-4 w-4" />
-              {date ? format(date, "PPP") : <span>Pick a date</span>}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto p-0">
-            <Calendar
-              mode="single"
-              selected={date}
-              onSelect={setDate}
-              initialFocus
-            />
-          </PopoverContent>
-        </Popover>
+            <br />
 
-        <br />
-        <br />
+            <p className="font-semibold pb-2 text-sm">Date:</p>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant={"outline"}
+                  className={cn(
+                    "w-[288px] justify-start text-left font-normal",
+                    !date && "text-muted-foreground"
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {date ? format(date, "PPP") : <span>Pick a date</span>}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar
+                  mode="single"
+                  selected={date}
+                  onSelect={setDate}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
 
-        <p className="font-bold pb-3  text-sm">Time Slot:</p>
-        <Badge className="cursor-pointer bg-blue-300 hover:bg-blue-600 mr-2 mb-2">
-          09:00AM
-        </Badge>
-        <Badge className="cursor-pointer bg-blue-300 hover:bg-blue-600 mr-2 mb-2">
-          10:00AM
-        </Badge>
-        <Badge className="cursor-pointer bg-blue-300 hover:bg-blue-600 mr-2 mb-2">
-          11:00AM
-        </Badge>
-        <Badge className="cursor-pointer bg-blue-300 hover:bg-blue-600 mr-2 mb-2">
-          12:00AM
-        </Badge>
-        <Badge className="cursor-pointer bg-blue-300 hover:bg-blue-600 mr-2 mb-2">
-          01:00PM
-        </Badge>
-        <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
-          02:00PM
-        </Badge>
-        <Badge className="cursor-pointer bg-blue-300 hover:bg-blue-600 mr-2 mb-2">
-          03:00PM
-        </Badge>
-        <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
-          04:00PM
-        </Badge>
-        <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
-          05:00PM
-        </Badge>
-        <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
-          06:00PM
-        </Badge>
+            <br />
+            <br />
 
-        <br />
-
-        <p className="font-bold pb-3 mt-4  text-sm">Transportation:</p>
-        <RadioGroup defaultValue="">
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="default" id="r1" />
-            <Label htmlFor="r1">In-house scheduled transportation</Label>
+            <p className="font-semibold pb-3  text-sm">Time Slot:</p>
+            <div className="pb-4">
+              <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
+                09:00AM
+              </Badge>
+              <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
+                10:00AM
+              </Badge>
+              <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
+                11:00AM
+              </Badge>
+              <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
+                12:00AM
+              </Badge>
+              <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
+                01:00PM
+              </Badge>
+              <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
+                02:00PM
+              </Badge>
+              <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
+                03:00PM
+              </Badge>
+              <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
+                04:00PM
+              </Badge>
+              <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
+                05:00PM
+              </Badge>
+              <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
+                06:00PM
+              </Badge>
+            </div>
           </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="comfortable" id="r2" />
-            <Label htmlFor="r2">Self arranged transportation</Label>
-          </div>
-        </RadioGroup>
-        <br />
 
-        <Button className="mt-8 mb-12">Proceed Next</Button>
+          <hr />
+          <div className="p-4 mb-4">
+            <Button className="float-right">Proceed Next</Button>
+          </div>
+          <br />
+        </Card>
+        <div className="flex-1 mt-2 sm:mt-0">
+          <div className="p-4 text-sm justify-between">
+            <p className="font-bold pb-2">Booking Notes:</p>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+              alias, amet laboriosam dicta consequatur quibusdam. Voluptatem
+              nobis, eveniet harum sed quod saepe atque ipsa dicta? Corporis
+              aliquid adipisci ducimus exercitationem.
+            </li>
+            <li>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita
+              corrupti accusantium natus sed doloremque! Cum labore molestiae
+              minima, sint veritatis sequi iusto! Tenetur ipsam pariatur
+              similique consectetur mollitia autem soluta?
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod quis
+              vero explicabo incidunt consequuntur, eligendi praesentium odit
+              repudiandae ad nobis, repellendus delectus, at distinctio cum
+              animi nam voluptas. Possimus, numquam.
+            </li>
+          </div>
+        </div>
       </div>
     </div>
   );
