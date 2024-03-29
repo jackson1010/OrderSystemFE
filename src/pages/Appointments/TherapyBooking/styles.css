@@ -3,11 +3,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 300px;
-
-  @media (max-width: 800px) {
-    height: 180px;
-  }
+  min-height: 100vh;
 }
 
 .backbtn {
