@@ -24,7 +24,7 @@ const TherapyBooking = () => {
   const [date, setDate] = useState<Date>();
 
   return (
-    <div className="therapybanner">
+    <div className="therapycontentbg">
       <div className="bg-slate-100/70 min-h-lvh">
         <div className="bg-slate-800 pt-5 px-4 text-slate-100 font-bold h-16">
           <Link to="/">
@@ -33,15 +33,17 @@ const TherapyBooking = () => {
           <h3 className="text-base font-bold inline">Therapy Booking</h3>
           <span style={{ float: "right" }}>en</span>
         </div>
-        <div className="p-4 pb-16 pt-6">
-          <div className="shadow-lg bg-white max-w-sm ml-2 rounded-md">
-            <div className="bg-slate-700 p-4 rounded-t-md">
-              <h3 className="font-bold mb-1 text-slate-50 text-sm">
-                Therapy Form
+        <div className="therapymobilebanner" />
+        <div className="sm:p-4 sm:pb-16 sm:pt-10">
+          <div className="shadow-lg bg-white sm:max-w-sm sm:ml-2 sm:rounded-md">
+            <div className="bg-slate-0 p-4 sm:rounded-t-md">
+              <h3 className="font-bold mb-1 text-slate-700 text-sm">
+                Therapy Booking
               </h3>
               <p className="text-xs mb-2 text-slate-400 text-justify">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
-                sunt voluptatibus recusandae modi eum nulla.
+                sunt voluptatibus recusandae modi eum nulla. Lorem ipsum dolor
+                sit amet consectetur adipisicing elit. Magni, reiciendis?
               </p>
             </div>
             <hr />

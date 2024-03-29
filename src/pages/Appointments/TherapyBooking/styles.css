@@ -1,9 +1,24 @@
-.therapybanner {
+.therapycontentbg {
+  @media (min-width: 800px) {
+    background-image: url("../../../assets/images/background/therapy2.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+  }
+}
+
+.therapymobilebanner {
   background-image: url("../../../assets/images/background/therapy2.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 100vh;
+  display: none;
+
+  @media (max-width: 800px) {
+    height: 180px;
+    display: block;
+  }
 }
 
 .backbtn {
