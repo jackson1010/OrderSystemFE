@@ -35,25 +35,23 @@ const TherapyBooking = () => {
         </div>
         <div className="therapymobilebanner" />
         <div className="sm:p-4 sm:pb-16 sm:pt-10">
-          <div className="shadow-lg bg-white sm:max-w-sm sm:ml-2 sm:rounded-md">
-            <div className="bg-slate-0 p-4 sm:rounded-t-md">
-              <h3 className="font-bold mb-1 text-slate-700 text-sm">
-                Therapy Booking
-              </h3>
-              <p className="text-xs mb-2 text-slate-400 text-justify">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
-                sunt voluptatibus recusandae modi eum nulla. Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Magni, reiciendis?
-              </p>
-            </div>
+          <div className="shadow-lg bg-white sm:max-w-xl sm:m-auto sm:rounded-md">
+            <p className="font-bold text-base text-slate-900 pt-6 px-4">
+              Therapy Booking
+            </p>
+            <p className="text-xs text-slate-500 px-4 pt-1 pb-6">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
+              exercitationem ducimus nemo numquam minima voluptates, corrupti
+              pariatur nam minus alias.
+            </p>
             <hr />
             <div className="p-4 text-xs">
               <p className="font-semibold pb-2 text-sm text-slate-600">
-                Category:
+                Category
               </p>
               <Select>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select Category" />
+                  <SelectValue placeholder="" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="new">
@@ -67,11 +65,11 @@ const TherapyBooking = () => {
 
               <br />
               <p className="font-semibold pb-2 text-sm text-slate-600">
-                Transportation:
+                Transportation
               </p>
               <Select>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select Category" />
+                  <SelectValue placeholder="" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="inhouse">
@@ -85,11 +83,11 @@ const TherapyBooking = () => {
 
               <br />
               <p className="font-semibold pb-2 text-sm text-slate-600">
-                Therapist:{" "}
+                Therapist
               </p>
               <Select>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select Therapist" />
+                  <SelectValue placeholder="" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="001">001 - Happy Bear</SelectItem>
@@ -102,7 +100,7 @@ const TherapyBooking = () => {
 
               <br />
 
-              <p className="font-semibold pb-2 text-sm text-slate-600">Date:</p>
+              <p className="font-semibold pb-2 text-sm text-slate-600">Date</p>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
@@ -113,7 +111,7 @@ const TherapyBooking = () => {
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {date ? format(date, "PPP") : <span>Pick a date</span>}
+                    {date ? format(date, "PPP") : <span></span>}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0">
@@ -129,7 +127,7 @@ const TherapyBooking = () => {
               <br />
               <br />
 
-              <p className="font-semibold pb-3  text-sm">Time Slot:</p>
+              <p className="font-semibold pb-3  text-sm">Time Slot</p>
               <div className="pb-4">
                 <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
                   09:00AM
@@ -163,7 +161,6 @@ const TherapyBooking = () => {
                 </Badge>
               </div>
             </div>
-
             <hr />
             <div className="p-4 mb-4">
               <Button className="float-right">Proceed Next</Button>
