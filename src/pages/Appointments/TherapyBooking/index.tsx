@@ -36,15 +36,9 @@ const TherapyBooking = () => {
         <div className="therapymobilebanner" />
         <div className="sm:p-4 sm:pb-16 sm:pt-10">
           <div className="shadow-lg bg-white sm:max-w-xl sm:m-auto sm:rounded-md">
-            <p className="font-bold text-base text-slate-900 pt-6 px-4">
-              Therapy Booking
+            <p className="font-bold text-base text-slate-900 pt-6 px-4 pb-4">
+              Booking Form
             </p>
-            <p className="text-xs text-slate-500 px-4 pt-1 pb-6">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-              exercitationem ducimus nemo numquam minima voluptates, corrupti
-              pariatur nam minus alias.
-            </p>
-            <hr />
             <div className="p-4 text-xs">
               <p className="font-semibold pb-2 text-sm text-slate-600">
                 Category
