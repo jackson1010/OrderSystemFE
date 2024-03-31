@@ -26,8 +26,8 @@ const Login = () => {
     dispatch(
       setUser({
         islogin: true,
-        username: "Sample User",
-        jwttoken: "Sample Token",
+        username: "Sample_User_666",
+        jwttoken: "sample_12345678",
       })
     );
     navigate("/");

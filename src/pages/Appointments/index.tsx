@@ -15,8 +15,16 @@ const HomePage = () => {
       <div className="banner">
         <div className="pt-5 px-4">
           <div className="font-bold text-slate-200">
-            <span className="align-top">GEHA Bookings</span>
+            <span className="align-top">Home</span>
             <span style={{ float: "right" }}>en</span>
+          </div>
+          <div className="text-sm text-slate-300 pt-6">
+            <p className="text-base font-bold text-slate-100">
+              Welcome to Geha Booking
+            </p>
+            <p className="text-xs">
+              Booking Service for Geylang East Home For the Aged
+            </p>
           </div>
         </div>
       </div>
