@@ -1,10 +1,3 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useState } from "react";
 import "./styles.css";
 import { format } from "date-fns";
@@ -19,6 +12,8 @@ import {
 } from "@/components/ui/popover";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const TherapyBooking = () => {
   const [date, setDate] = useState<Date>();
@@ -36,62 +31,145 @@ const TherapyBooking = () => {
         <div className="therapymobilebanner" />
         <div className="sm:p-4 sm:pb-16 sm:pt-10">
           <div className="shadow-lg bg-white sm:max-w-xl sm:m-auto sm:rounded-md">
-            <p className="font-bold text-base text-slate-900 pt-6 px-4 pb-4">
-              Booking Form
+            <p className="font-bold text-base text-slate-900 pt-6 px-4 pb-2 underline">
+              Therapy Booking Form
             </p>
-            <div className="p-4 text-xs">
-              <p className="font-semibold pb-2 text-sm text-slate-600">
+            <div className="p-4">
+              <p className="font-semibold pb-2 text-sm text-slate-800">
                 Category
               </p>
-              <Select>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="new">
+              <RadioGroup defaultValue="">
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem
+                    value="newreferral"
+                    id="r1-1"
+                    className="text-slate-500"
+                  />
+                  <Label
+                    htmlFor="r1-1"
+                    className="text-sm text-slate-500 font-normal"
+                  >
                     Primary Assessment (New Referral)
-                  </SelectItem>
-                  <SelectItem value="followup">
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem
+                    value="existingcustomer"
+                    id="r1-2"
+                    className="text-slate-500"
+                  />
+                  <Label
+                    htmlFor="r1-2"
+                    className="text-sm text-slate-500 font-normal"
+                  >
                     Therapy Booking (Existing Customer)
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-
+                  </Label>
+                </div>
+              </RadioGroup>
               <br />
-              <p className="font-semibold pb-2 text-sm text-slate-600">
+              <p className="font-semibold pb-2 text-sm text-slate-800">
                 Transportation
               </p>
-              <Select>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="inhouse">
+              <RadioGroup defaultValue="">
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem
+                    value="inhouse"
+                    id="r2-1"
+                    className="text-slate-500"
+                  />
+                  <Label
+                    htmlFor="r2-1"
+                    className="text-sm text-slate-500 font-normal"
+                  >
                     In-house scheduled transportation
-                  </SelectItem>
-                  <SelectItem value="selftransport">
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem
+                    value="selftransport"
+                    id="r2-2"
+                    className="text-slate-500"
+                  />
+                  <Label
+                    htmlFor="r2-2"
+                    className="text-sm text-slate-500 font-normal"
+                  >
                     Self arranged transportation
-                  </SelectItem>
-                </SelectContent>
-              </Select>
+                  </Label>
+                </div>
+              </RadioGroup>
 
               <br />
-              <p className="font-semibold pb-2 text-sm text-slate-600">
+              <p className="font-semibold pb-2 text-sm text-slate-800">
                 Therapist
               </p>
-              <Select>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="001">001 - Happy Bear</SelectItem>
-                  <SelectItem value="002">002 - Angry Tiger</SelectItem>
-                  <SelectItem value="003">003 - Sleepy Dog</SelectItem>
-                  <SelectItem value="004">004 - Tasty Chicken</SelectItem>
-                  <SelectItem value="005">005 - Crazy Frog</SelectItem>
-                </SelectContent>
-              </Select>
-
+              <RadioGroup defaultValue="">
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem
+                    value="001"
+                    id="r3-1"
+                    className="text-slate-500"
+                  />
+                  <Label
+                    htmlFor="r3-1"
+                    className="text-sm text-slate-500 font-normal"
+                  >
+                    001 - Melissa Yap
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem
+                    value="002"
+                    id="r3-2"
+                    className="text-slate-500"
+                  />
+                  <Label
+                    htmlFor="r3-2"
+                    className="text-sm text-slate-500 font-normal"
+                  >
+                    002 - Bernice Lim
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem
+                    value="003"
+                    id="r3-3"
+                    className="text-slate-500"
+                  />
+                  <Label
+                    htmlFor="r3-3"
+                    className="text-sm text-slate-500 font-normal"
+                  >
+                    003 - Andy Cheong
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem
+                    value="004"
+                    id="r3-4"
+                    className="text-slate-500"
+                  />
+                  <Label
+                    htmlFor="r3-4"
+                    className="text-sm text-slate-500 font-normal"
+                  >
+                    004 - Anderson Chiew
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem
+                    value="005"
+                    id="r3-5"
+                    className="text-slate-500"
+                  />
+                  <Label
+                    htmlFor="r3-5"
+                    className="text-sm text-slate-500 font-normal"
+                  >
+                    005 - Satoshi Ash Ketchum
+                  </Label>
+                </div>
+              </RadioGroup>
               <br />
 
               <p className="font-semibold pb-2 text-sm text-slate-600">Date</p>
@@ -156,7 +234,7 @@ const TherapyBooking = () => {
               </div>
             </div>
             <hr />
-            <div className="p-4 mb-4">
+            <div className="p-4 mb-8 mt-2">
               <Button className="float-right">Proceed Next</Button>
             </div>
             <br />

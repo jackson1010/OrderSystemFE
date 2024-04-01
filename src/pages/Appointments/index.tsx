@@ -23,7 +23,7 @@ const HomePage = () => {
               Welcome to Geha Booking
             </p>
             <p className="text-xs">
-              Booking Service for Geylang East Home For the Aged
+              Start Therapy Booking or Visitors Booking with us now.
             </p>
           </div>
         </div>
