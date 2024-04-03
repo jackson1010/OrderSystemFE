@@ -30,7 +30,7 @@ const TherapyBooking = () => {
         </div>
         <div className="therapymobilebanner" />
         <div className="sm:p-4 sm:pb-16 sm:pt-10">
-          <div className="shadow-lg bg-white sm:max-w-xl sm:m-auto sm:rounded-md">
+          <div className="shadow-lg bg-white sm:max-w-2xl sm:m-auto sm:rounded-md">
             <p className="font-bold text-base text-slate-900 pt-6 px-4 pb-2 underline">
               Therapy Booking Form
             </p>
