@@ -1,0 +1,26 @@
+.visitorcontentbg {
+  @media (min-width: 800px) {
+    background-image: url("../../../assets/images/background/visitor.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+  }
+}
+
+.visitormobilebanner {
+  background-image: url("../../../assets/images/background/visitor.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: none;
+
+  @media (max-width: 800px) {
+    height: 180px;
+    display: block;
+  }
+}
+
+.backbtn {
+  display: inline;
+}

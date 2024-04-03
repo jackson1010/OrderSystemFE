@@ -12,6 +12,7 @@ import { getUser } from "@/data/actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import SideNav from "./SideNav";
 import BottomNav from "./BottomNav";
+import VisitorBooking from "../Appointments/VisitorBooking";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Appointments />} />
               <Route path="/therapy" element={<TherapyBooking />} />
+              <Route path="/visitor" element={<VisitorBooking />} />
               <Route path="/shadcnui" element={<SampleShadCnUi />} />
               <Route path="/sampleredux" element={<SampleReduxSagaAxios />} />
               <Route path="/references" element={<References />} />

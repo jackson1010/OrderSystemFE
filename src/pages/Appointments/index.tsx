@@ -35,7 +35,7 @@ const HomePage = () => {
           <div className="flex flex-wrap">
             <div className="mr-4" style={{ width: "66px" }}>
               <Card
-                className="basis-10 shrink-0 grow-0 max-w-none bg-blue-200 text-slate-700 p-4 sm:hover:bg-blue-300 text-sm cursor-pointer"
+                className="basis-10 shrink-0 grow-0 max-w-none bg-blue-50 text-blue-700 p-4 sm:hover:bg-blue-100 text-sm cursor-pointer"
                 onClick={() => {
                   navigate("/therapy");
                 }}
@@ -49,7 +49,7 @@ const HomePage = () => {
 
             <div className="mr-4" style={{ width: "66px" }}>
               <Card
-                className="basis-10 shrink-0 grow-0 max-w-none bg-blue-200 text-slate-700 p-4 sm:hover:bg-blue-300 text-sm cursor-pointer"
+                className="basis-10 shrink-0 grow-0 max-w-none bg-purple-50 text-purple-700 p-4 sm:hover:bg-purple-100 text-sm cursor-pointer"
                 onClick={() => {
                   navigate("/visitor");
                 }}
@@ -63,7 +63,7 @@ const HomePage = () => {
 
             <div className="mr-4" style={{ width: "66px" }}>
               <Card
-                className="basis-10 shrink-0 grow-0 max-w-none bg-blue-200 text-slate-700 p-4 sm:hover:bg-blue-300 text-sm cursor-pointer"
+                className="basis-10 shrink-0 grow-0 max-w-none bg-green-50 text-green-700 p-4 sm:hover:bg-green-100 text-sm cursor-pointer"
                 onClick={() => {
                   navigate("/customersupport");
                 }}

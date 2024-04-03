@@ -40,10 +40,9 @@ const Login = () => {
         <>
           <Card className="mb-2 p-2 text-xs bg-red-100 text-red-500 font-bold text-center">
             <TriangleAlertIcon className="m-auto" />
-            <p>Warning !!!</p>
+            <p>Demo Web Application</p>
             <div className="font-normal mt-2">
-              <p>This is a Demo Web Application</p>
-              <p>Do not enter your personal info !!!</p>
+              <p>Do Not enter your credential!!!</p>
             </div>
           </Card>
           <img src={GehaLogo} className="logotop" autoFocus />

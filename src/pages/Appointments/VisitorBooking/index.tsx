@@ -14,25 +14,26 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Input } from "@/components/ui/input";
 
-const TherapyBooking = () => {
+const VisitorBooking = () => {
   const [date, setDate] = useState<Date>();
 
   return (
-    <div className="therapycontentbg">
+    <div className="visitorcontentbg">
       <div className="bg-slate-100/70 min-h-lvh">
-        <div className="bg-blue-900 pt-5 px-4 text-slate-100 font-bold h-16">
+        <div className="bg-purple-900 pt-5 px-4 text-slate-100 font-bold h-16">
           <Link to="/">
             <ArrowLeftIcon className="inline mr-4 backbtn" />
           </Link>
-          <h3 className="text-base font-bold inline">Therapy Booking</h3>
+          <h3 className="text-base font-bold inline">Visitor Booking</h3>
           <span style={{ float: "right" }}>en</span>
         </div>
-        <div className="therapymobilebanner" />
+        <div className="visitormobilebanner" />
         <div className="sm:p-4 sm:pb-16 sm:pt-10">
           <div className="shadow-lg bg-white sm:max-w-2xl sm:m-auto sm:rounded-md">
             <p className="font-bold text-base text-slate-900 pt-6 px-4 pb-2 underline">
-              Therapy Booking Form
+              Visitor Booking Form
             </p>
             <div className="p-4">
               <p className="font-semibold pb-2 text-sm text-slate-800">
@@ -41,7 +42,7 @@ const TherapyBooking = () => {
               <RadioGroup defaultValue="">
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem
-                    value="newreferral"
+                    value="family"
                     id="r1-1"
                     className="text-slate-500"
                   />
@@ -49,12 +50,12 @@ const TherapyBooking = () => {
                     htmlFor="r1-1"
                     className="text-sm text-slate-500 font-normal"
                   >
-                    Primary Assessment (New Referral)
+                    Family Member Visit
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem
-                    value="existingcustomer"
+                    value="socialworker"
                     id="r1-2"
                     className="text-slate-500"
                   />
@@ -62,123 +63,29 @@ const TherapyBooking = () => {
                     htmlFor="r1-2"
                     className="text-sm text-slate-500 font-normal"
                   >
-                    Therapy Booking (Existing Customer)
+                    Social Worker Visit
                   </Label>
                 </div>
               </RadioGroup>
-              <br />
-              <p className="font-semibold pb-2 text-sm text-slate-800">
-                Transportation
+              <p className="font-semibold pt-4 pb-2 text-sm text-slate-800">
+                Number of Guests
               </p>
-              <RadioGroup defaultValue="">
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem
-                    value="inhouse"
-                    id="r2-1"
-                    className="text-slate-500"
-                  />
-                  <Label
-                    htmlFor="r2-1"
-                    className="text-sm text-slate-500 font-normal"
-                  >
-                    In-house scheduled transportation
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem
-                    value="selftransport"
-                    id="r2-2"
-                    className="text-slate-500"
-                  />
-                  <Label
-                    htmlFor="r2-2"
-                    className="text-sm text-slate-500 font-normal"
-                  >
-                    Self arranged transportation
-                  </Label>
-                </div>
-              </RadioGroup>
 
-              <br />
-              <p className="font-semibold pb-2 text-sm text-slate-800">
-                Therapist
+              <Input
+                type="number"
+                placeholder="total pax"
+                className="w-full sm:w-60"
+              />
+
+              <p className="font-semibold pt-4 pb-2 text-sm text-slate-600">
+                Date
               </p>
-              <RadioGroup defaultValue="">
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem
-                    value="001"
-                    id="r3-1"
-                    className="text-slate-500"
-                  />
-                  <Label
-                    htmlFor="r3-1"
-                    className="text-sm text-slate-500 font-normal"
-                  >
-                    001 - Melissa Yap
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem
-                    value="002"
-                    id="r3-2"
-                    className="text-slate-500"
-                  />
-                  <Label
-                    htmlFor="r3-2"
-                    className="text-sm text-slate-500 font-normal"
-                  >
-                    002 - Bernice Lim
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem
-                    value="003"
-                    id="r3-3"
-                    className="text-slate-500"
-                  />
-                  <Label
-                    htmlFor="r3-3"
-                    className="text-sm text-slate-500 font-normal"
-                  >
-                    003 - Andy Cheong
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem
-                    value="004"
-                    id="r3-4"
-                    className="text-slate-500"
-                  />
-                  <Label
-                    htmlFor="r3-4"
-                    className="text-sm text-slate-500 font-normal"
-                  >
-                    004 - Anderson Chiew
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem
-                    value="005"
-                    id="r3-5"
-                    className="text-slate-500"
-                  />
-                  <Label
-                    htmlFor="r3-5"
-                    className="text-sm text-slate-500 font-normal"
-                  >
-                    005 - Satoshi Ash Ketchum
-                  </Label>
-                </div>
-              </RadioGroup>
-              <br />
-
-              <p className="font-semibold pb-2 text-sm text-slate-600">Date</p>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant={"outline"}
                     className={cn(
-                      "w-full justify-start text-left font-normal",
+                      "w-full sm:w-60 justify-start text-left font-normal",
                       !date && "text-muted-foreground"
                     )}
                   >
@@ -232,6 +139,8 @@ const TherapyBooking = () => {
                   06:00PM
                 </Badge>
               </div>
+
+              <br />
             </div>
             <hr />
             <div className="p-4 mb-8 mt-2">
@@ -245,4 +154,4 @@ const TherapyBooking = () => {
   );
 };
 
-export default TherapyBooking;
+export default VisitorBooking;
