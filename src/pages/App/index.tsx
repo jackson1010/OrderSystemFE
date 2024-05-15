@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import References from "../References";
 import TherapyBooking from "../Appointments/TherapyBooking";
 import Login from "../Login";
@@ -15,6 +15,7 @@ import BottomNav from "./BottomNav";
 import VisitorBooking from "../Appointments/VisitorBooking";
 
 const App = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const userobj = useSelector((state: any) => state.userReducer);
 
@@ -30,6 +31,21 @@ const App = () => {
       console.warn("User is not logged in, redirect to login page...");
     } else {
       console.warn("User is logged in, Welcome back " + userobj.username);
+      console.warn(userobj.role);
+      switch (userobj.role) {
+        case "samplerole1":
+          navigate("/appointment");
+          break;
+        case "admin":
+          navigate("/admin");
+          break;
+        case "user":
+          navigate("/user");
+          break;
+        default:
+          console.log("Error!!! Unknown User role !!!");
+          break;
+      }
     }
   }, [userobj]);
 
@@ -41,6 +57,7 @@ const App = () => {
           <div className="sidecontent">
             <Routes>
               <Route path="/" element={<Appointments />} />
+              <Route path="/appointment" element={<Appointments />} />
               <Route path="/therapy" element={<TherapyBooking />} />
               <Route path="/visitor" element={<VisitorBooking />} />
               <Route path="/shadcnui" element={<SampleShadCnUi />} />
@@ -48,7 +65,7 @@ const App = () => {
               <Route path="/references" element={<References />} />
               <Route path="/*" element={<UnderDevelopment />} />
             </Routes>
-            <div className="sm:hidden" style={{height:"70px"}} />
+            <div className="sm:hidden" style={{ height: "70px" }} />
             <BottomNav />
           </div>
         </>

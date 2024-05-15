@@ -28,6 +28,7 @@ const Login = () => {
         islogin: true,
         username: "Sample_User_666",
         jwttoken: "sample_12345678",
+        role: "samplerole1"
       })
     );
     navigate("/");

@@ -1,7 +1,7 @@
 import { GET_USEROBJ, SET_USER } from "../constant";
 
 export const userReducer = (
-  data = { islogin: false, username: "", jwttoken: "" },
+  data = { islogin: false, username: "", jwttoken: "" , role: "" },
   action: any
 ) => {
   switch (action.type) {
