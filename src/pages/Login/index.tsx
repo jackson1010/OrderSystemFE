@@ -9,29 +9,52 @@ import {
 } from "@/components/ui/drawer";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setUser } from "@/data/actions/userAction";
 import GehaLogo from "../../assets/logo/Logo.png";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import ForgetPassword from "./ForgetPassword";
 import { Card } from "@/components/ui/card";
 import { TriangleAlertIcon } from "lucide-react";
+import { useState } from "react";
+import { setClientProfile, setVisitorProfile } from "@/data/actions/userAction";
+import { AppDispatch } from "@/data/store";
+import { signIn } from "@/data/api/signInAPI";
+import { getProfile } from "@/data/api/profileAPI";
 
 const Login = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginError, setLoginError]= useState<string | null>(null);
 
-  const handleLogin = () => {
-    alert("Demo Login , Assume login success...");
-    dispatch(
-      setUser({
-        islogin: true,
-        username: "Sample_User_666",
-        jwttoken: "sample_12345678",
-        role: "samplerole1"
-      })
-    );
-    navigate("/");
+  const handleLogin = async () => {
+    try{
+      const loginResponse = await signIn({username, password})
+      if(loginResponse.status == 200){
+        const {token , authority} = await loginResponse.data;
+
+        localStorage.setItem('jwtToken', token);
+        localStorage.setItem('userAuthority', authority);
+
+        const userDetailsResponse = await getProfile(token, username);
+
+        if(userDetailsResponse.status==200){
+          const userDetails = await userDetailsResponse.data;
+          switch(authority){
+            case 'VISITOR':
+              dispatch(setVisitorProfile(userDetails));
+              break;
+            case 'CLIENT':
+              dispatch(setClientProfile(userDetails));
+              break;
+          }
+        }else{
+          setLoginError('Failed to fetch user details.');
+        }
+      }
+    }catch(error){
+      console.error('error: ', error);
+    }
   };
 
   return (
@@ -39,23 +62,20 @@ const Login = () => {
       <div className="leftbanner bg-slate-500 flex-auto hidden sm:block" />
       <div className="flex-auto basis-80 sm:flex-grow-0 p-8">
         <>
-          <Card className="mb-2 p-2 text-xs bg-red-100 text-red-500 font-bold text-center">
-            <TriangleAlertIcon className="m-auto" />
-            <p>Demo Web Application</p>
-            <div className="font-normal mt-2">
-              <p>Do Not enter your credential!!!</p>
-            </div>
-          </Card>
           <img src={GehaLogo} className="logotop" autoFocus />
           <Input
             type="email"
             placeholder="Email"
+            value={username}
             className="w-full mx-auto mt-8 text-base"
+            onChange={(e) => setUsername(e.target.value)}
           />
           <Input
             type="password"
             placeholder="Password"
+            value={password}
             className="w-full mx-auto mt-4 text-base"
+            onChange={(e) =>setPassword(e.target.value)}
           />
           <Button
             variant={"default"}

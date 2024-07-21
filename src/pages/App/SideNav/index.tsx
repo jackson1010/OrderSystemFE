@@ -1,20 +1,15 @@
-import { setUser } from "@/data/actions/userAction";
+
 import { HomeIcon, LinkIcon, LogOutIcon, SettingsIcon } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Logo from "../../../assets/logo/Logo2.png";
+import { logout } from "@/data/actions/userAction";
 
 const SideNav = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(
-      setUser({
-        islogin: false,
-        username: "",
-        jwttoken: "",
-      })
-    );
+    dispatch(logout());
   };
   return (
     <div className="sidenav bg-slate-900">
