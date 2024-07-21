@@ -9,29 +9,70 @@ import {
 } from "@/components/ui/drawer";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setUser } from "@/data/actions/userAction";
 import GehaLogo from "../../assets/logo/Logo.png";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import ForgetPassword from "./ForgetPassword";
 import { Card } from "@/components/ui/card";
 import { TriangleAlertIcon } from "lucide-react";
+import { useState } from "react";
+import { setClientProfile, setVisitorProfile } from "@/data/actions/userAction";
+import { AppDispatch } from "@/data/store";
 
 const Login = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginError, setLoginError]= useState<string | null>(null);
 
-  const handleLogin = () => {
-    alert("Demo Login , Assume login success...");
-    dispatch(
-      setUser({
-        islogin: true,
-        username: "Sample_User_666",
-        jwttoken: "sample_12345678",
-        role: "samplerole1"
-      })
-    );
-    navigate("/");
+  const handleLogin = async () => {
+    try{
+      const loginResponse = await fetch('http://localhost:8080/api/signin',{
+        method: 'POST',
+        headers:{
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({username, password})
+      });
+      console.log(username, password);
+      if(loginResponse.ok){
+        const loginData = await loginResponse.json();
+        const {token , authority} = loginData;
+        console.log( token, authority);
+
+        localStorage.setItem('jwtToken', token);
+        localStorage.setItem('userAuthority', authority);
+
+        const userDetailsResponse = await fetch('http://localhost:8080/api/profile', {
+          method: 'POST',
+          headers:{
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({username})
+        });
+        console.log(username);
+
+        if(userDetailsResponse.ok){
+          const userDetails = await userDetailsResponse.json();
+
+          switch(authority){
+            case 'VISITOR':
+              dispatch(setVisitorProfile(userDetails));
+              break;
+            case 'CLIENT':
+              dispatch(setClientProfile(userDetails));
+              break;
+          }
+          navigate("/")
+        }else{
+          setLoginError('Failed to fetch user details.');
+        }
+      }
+    }catch(error){
+      console.error('error: ', error);
+    }
   };
 
   return (
@@ -50,12 +91,16 @@ const Login = () => {
           <Input
             type="email"
             placeholder="Email"
+            value={username}
             className="w-full mx-auto mt-8 text-base"
+            onChange={(e) => setUsername(e.target.value)}
           />
           <Input
             type="password"
             placeholder="Password"
+            value={password}
             className="w-full mx-auto mt-4 text-base"
+            onChange={(e) =>setPassword(e.target.value)}
           />
           <Button
             variant={"default"}

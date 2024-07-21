@@ -1,7 +1,7 @@
-export const GET_CARTS = "GET_CARTS"
-export const ADD_CARTS = "ADD_CARTS"
-export const DELETE_CARTS = "DELETE_CARTS"
-export const GET_POKEMON = "GET_POKEMON"
-export const SET_POKEMON = "SET_POKEMON"
-export const GET_USEROBJ = "GET_USEROBJ"
-export const SET_USER = "SET_USER"
+
+export const SET_VISITOR_PROFILE = "SET_VISITOR_PROFILE";
+export const SET_CLIENT_PROFILE = "SET_CLIENT_PROFILE";
+export const LOGOUT = "LOGOUT";
+
+
+

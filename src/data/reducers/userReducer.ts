@@ -1,18 +1,41 @@
-import { GET_USEROBJ, SET_USER } from "../constant";
+import { UserActionTypes, SetClientProfileAction, setClientProfile } from "../actions/userAction";
+import { SET_CLIENT_PROFILE, SET_VISITOR_PROFILE, LOGOUT } from "../constant";
+import { UserProfile } from "../profile";
 
-export const userReducer = (
-  data = { islogin: false, username: "", jwttoken: "" , role: "" },
-  action: any
-) => {
+interface UserState{
+  islogin: boolean;
+  profile: UserProfile | null;
+}
+
+const initialState: UserState = {
+  islogin: false,
+  profile: null,
+}
+
+const userReducer = (state = initialState, action: UserActionTypes): UserState => {
   switch (action.type) {
-    case GET_USEROBJ:
-      console.log("reducer - get user called");
-      console.log(data);
-      return data;
-    case SET_USER:
-      console.log("reducer - set user called");
-      return action.data;
+    case SET_VISITOR_PROFILE:
+      console.log("reducer - set visitor called");
+      return{
+        ...state,
+        islogin:true,
+        profile:action.payload,
+      };
+    case SET_CLIENT_PROFILE:
+      return{
+        ...state,
+        islogin: true,
+        profile: action.payload,
+      }
+    case LOGOUT:
+      return{
+        ...state,
+        islogin:false,
+        profile:null,
+      }    
     default:
-      return data;
+      return state;
   }
 };
+
+export default userReducer;

@@ -2,7 +2,7 @@ import { HomeIcon, LinkIcon, LogOutIcon, SettingsIcon } from "lucide-react";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setUser } from "@/data/actions/userAction";
+import { logout } from "@/data/actions/userAction";
 
 const BottomNav = () => {
   const navigate = useNavigate();
@@ -10,13 +10,7 @@ const BottomNav = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(
-      setUser({
-        islogin: false,
-        username: "",
-        jwttoken: "",
-      })
-    );
+    dispatch(logout());
   };
 
   return (

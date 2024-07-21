@@ -1,15 +1,13 @@
-import { Tuple, configureStore } from "@reduxjs/toolkit";
-import rootReducer from "./rootReducer";
-import createSagaMiddleware from "redux-saga";
-import pokemonSaga from "./sagas/pokemonSaga";
 
-const sagaMiddleware = createSagaMiddleware();
+import { configureStore } from "@reduxjs/toolkit";
+import rootReducer from "./rootReducer";
+
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: () => new Tuple(sagaMiddleware),
 });
 
-sagaMiddleware.run(pokemonSaga);
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 export default store;
