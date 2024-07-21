@@ -18,6 +18,8 @@ import { TriangleAlertIcon } from "lucide-react";
 import { useState } from "react";
 import { setClientProfile, setVisitorProfile } from "@/data/actions/userAction";
 import { AppDispatch } from "@/data/store";
+import { signIn } from "@/data/api/signInAPI";
+import { getProfile } from "@/data/api/profileAPI";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -28,35 +30,20 @@ const Login = () => {
 
   const handleLogin = async () => {
     try{
-      const loginResponse = await fetch('http://localhost:8080/api/signin',{
-        method: 'POST',
-        headers:{
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({username, password})
-      });
+      const loginResponse = await signIn({username, password})
+      
       console.log(username, password);
-      if(loginResponse.ok){
-        const loginData = await loginResponse.json();
-        const {token , authority} = loginData;
+      if(loginResponse.status == 200){
+        const {token , authority} = await loginResponse.data;
         console.log( token, authority);
 
         localStorage.setItem('jwtToken', token);
         localStorage.setItem('userAuthority', authority);
 
-        const userDetailsResponse = await fetch('http://localhost:8080/api/profile', {
-          method: 'POST',
-          headers:{
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-          body: JSON.stringify({username})
-        });
-        console.log(username);
+        const userDetailsResponse = await getProfile(token, username);
 
-        if(userDetailsResponse.ok){
-          const userDetails = await userDetailsResponse.json();
-
+        if(userDetailsResponse.status==200){
+          const userDetails = await userDetailsResponse.data;
           switch(authority){
             case 'VISITOR':
               dispatch(setVisitorProfile(userDetails));
@@ -65,7 +52,6 @@ const Login = () => {
               dispatch(setClientProfile(userDetails));
               break;
           }
-          navigate("/")
         }else{
           setLoginError('Failed to fetch user details.');
         }
