@@ -22,7 +22,6 @@ import { signIn } from "@/data/api/signInAPI";
 import { getProfile } from "@/data/api/profileAPI";
 
 const Login = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -31,11 +30,8 @@ const Login = () => {
   const handleLogin = async () => {
     try{
       const loginResponse = await signIn({username, password})
-      
-      console.log(username, password);
       if(loginResponse.status == 200){
         const {token , authority} = await loginResponse.data;
-        console.log( token, authority);
 
         localStorage.setItem('jwtToken', token);
         localStorage.setItem('userAuthority', authority);
@@ -66,13 +62,6 @@ const Login = () => {
       <div className="leftbanner bg-slate-500 flex-auto hidden sm:block" />
       <div className="flex-auto basis-80 sm:flex-grow-0 p-8">
         <>
-          <Card className="mb-2 p-2 text-xs bg-red-100 text-red-500 font-bold text-center">
-            <TriangleAlertIcon className="m-auto" />
-            <p>Demo Web Application</p>
-            <div className="font-normal mt-2">
-              <p>Do Not enter your credential!!!</p>
-            </div>
-          </Card>
           <img src={GehaLogo} className="logotop" autoFocus />
           <Input
             type="email"

@@ -19,7 +19,6 @@ const App = () => {
 
   useEffect(() => {
     console.log("userobj updated");
-    console.log("this is user obj")
     console.log(userobj);
 
     if (userobj.islogin === false) {
