@@ -34,7 +34,7 @@ const App = () => {
           navigate("/admin");
           break;
         case "VISITOR":
-          navigate("/user");
+          navigate("/");
           break;
         default:
           console.log("Error!!! Unknown User role !!!");
