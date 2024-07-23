@@ -6,9 +6,43 @@ import {
   CalendarHeartIcon,
   PhoneOutgoingIcon,
 } from "lucide-react";
+import { useSelector } from "react-redux";
+import { getMyVisitorBookings } from "@/data/api/apiClient";
+import { useEffect, useState } from "react";
+import { formatDate } from "@/utils/ScrollToTop/StringFromatter";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const userobj = useSelector((state: any) => state.userReducer);
+  const [bookingList, setBookingList] = useState([]);
+
+  useEffect(()=>{
+    console.log("homePage")
+    
+    const fetchVisitorBookings = async ()=>{
+    
+      try{
+        console.log("fetching data")
+        const bookingReponse = await getMyVisitorBookings(userobj.profile.visitorId);
+  
+        if(bookingReponse.status ==200){
+          const bookings = await bookingReponse.data;
+          console.log(bookings);
+          setBookingList(bookings)
+        }
+      }catch(error){
+        console.error('error: ', error);
+      }
+    };
+
+    if (userobj.profile && userobj.profile.visitorId) {
+      fetchVisitorBookings();
+    }
+  }, [userobj.profile]);
+
+
+    
+
 
   return (
     <div>
@@ -77,44 +111,28 @@ const HomePage = () => {
           </div>
         </div>
         <div className="p-4 pr-1">
-          <p className="text-sm font-bold pb-4">Your Appointments</p>
+          <p className="text-sm font-bold pb-4">Your Bookings</p>
           <div className="flex flex-wrap">
-            <Card
-              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-100 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3"
-              onClick={() => {
-                navigate("/therapydetails");
-              }}
-            >
-              <h3 className="font-bold">19/03/2024 (Tue)</h3>
-              <p className="mt-2">Subject : Therapy</p>
-              <p className="mt-0">Therapist : Melissa Yeo</p>
-              <p className="mt-0">Session : 10:00AM - 11:00AM</p>
+            {bookingList.length ===0 ?(
+              <Card className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-100 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3">
+                <p className="mt-0">No current bookings</p>
+              </Card>
+            ):(
+            bookingList.map((booking: any) =>(
+              <Card
+                key ={booking.visitorBookingId}
+                className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-100 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3"
+                onClick={() => {navigate("/therapydetails");}}
+              >
+              <h3 className="font-bold">{formatDate(booking.bookingTiming)}</h3>
+              <p className="mt-2">Subject: {booking.reasonForVisit}</p>
+              <p className="mt-0">Approved: <span className={booking.isApproved ? 'text-green-600' : 'text-red-600'}>
+                {booking.isApproved ? "Yes" : "No"}</span>
+              </p>
               <p className="mt-1 text-slate-600 underline">Click for details</p>
-            </Card>
-            <Card
-              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-100 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3"
-              onClick={() => {
-                navigate("/therapydetails");
-              }}
-            >
-              <h3 className="font-bold">29/03/2024 (Fri)</h3>
-              <p className="mt-2">Subject : Therapy</p>
-              <p className="mt-0">Therapist : Theressa Ong</p>
-              <p className="mt-0">Session : 02:00PM - 03:00PM</p>
-              <p className="mt-1 text-slate-600 underline">Click for details</p>
-            </Card>
-            <Card
-              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-100 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3"
-              onClick={() => {
-                navigate("/visitordetails");
-              }}
-            >
-              <h3 className="font-bold">30/03/2024 (Sat)</h3>
-              <p className="mt-2">Subject : Visitor</p>
-              <p className="mt-0">Visiting : James Liew</p>
-              <p className="mt-0">Session : 02:00PM - 03:00PM</p>
-              <p className="mt-1 text-slate-600 underline">Click for details</p>
-            </Card>
+              </Card>
+            ))
+            )}
           </div>
         </div>
       </div>

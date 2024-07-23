@@ -7,19 +7,16 @@ import {
   DrawerHeader,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import GehaLogo from "../../assets/logo/Logo.png";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import ForgetPassword from "./ForgetPassword";
-import { Card } from "@/components/ui/card";
-import { TriangleAlertIcon } from "lucide-react";
 import { useState } from "react";
 import { setClientProfile, setVisitorProfile } from "@/data/actions/userAction";
 import { AppDispatch } from "@/data/store";
-import { signIn } from "@/data/api/signInAPI";
-import { getProfile } from "@/data/api/profileAPI";
+import { validateCredentials } from "@/utils/ScrollToTop/Validations/authValidation";
+import { getProfile, signIn } from "@/data/api/apiClient";
 
 const Login = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -28,6 +25,16 @@ const Login = () => {
   const [loginError, setLoginError]= useState<string | null>(null);
 
   const handleLogin = async () => {
+    
+    const error = validateCredentials(username, password);
+    if(error){
+      setLoginError(error);
+      setTimeout(()=>{
+        setLoginError(null);
+      },5000);
+      return;
+    }
+
     try{
       const loginResponse = await signIn({username, password})
       if(loginResponse.status == 200){
@@ -136,6 +143,12 @@ const Login = () => {
                   </DrawerHeader>
                 </DrawerContent>
               </Drawer>
+              {loginError &&(
+                <div className="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+                  <p className="font-bold">Error message</p>
+                  <p className="text-sm">{loginError}</p>
+                </div>
+              )}
             </div>
           </div>
         </>
