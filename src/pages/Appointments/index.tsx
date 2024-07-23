@@ -111,26 +111,28 @@ const HomePage = () => {
           </div>
         </div>
         <div className="p-4 pr-1">
-          <p className="text-sm font-bold pb-4">Your Appointments</p>
+          <p className="text-sm font-bold pb-4">Your Bookings</p>
           <div className="flex flex-wrap">
-          { bookingList.map((booking: any) =>(
+            {bookingList.length ===0 ?(
+              <Card className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-100 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3">
+                <p className="mt-0">No current bookings</p>
+              </Card>
+            ):(
+            bookingList.map((booking: any) =>(
               <Card
-              key ={booking.visitorBookingId}
-              className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-100 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3"
-              onClick={() => {
-                navigate("/therapydetails");
-              }}
-            >
+                key ={booking.visitorBookingId}
+                className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-100 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3"
+                onClick={() => {navigate("/therapydetails");}}
+              >
               <h3 className="font-bold">{formatDate(booking.bookingTiming)}</h3>
               <p className="mt-2">Subject: {booking.reasonForVisit}</p>
-              <p className="mt-0">
-                  Approved: <span className={booking.isApproved ? 'text-green-600' : 'text-red-600'}>
-                    {booking.isApproved ? "Yes" : "No"}
-                  </span>
-                </p>
+              <p className="mt-0">Approved: <span className={booking.isApproved ? 'text-green-600' : 'text-red-600'}>
+                {booking.isApproved ? "Yes" : "No"}</span>
+              </p>
               <p className="mt-1 text-slate-600 underline">Click for details</p>
-            </Card>
-             ))} 
+              </Card>
+            ))
+            )}
           </div>
         </div>
       </div>
