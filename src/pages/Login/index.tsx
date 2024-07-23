@@ -43,7 +43,7 @@ const Login = () => {
         localStorage.setItem('jwtToken', token);
         localStorage.setItem('userAuthority', authority);
 
-        const userDetailsResponse = await getProfile(token, username);
+        const userDetailsResponse = await getProfile(username);
 
         if(userDetailsResponse.status==200){
           const userDetails = await userDetailsResponse.data;

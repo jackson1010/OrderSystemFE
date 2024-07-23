@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./styles.css";
-import { format } from "date-fns";
 import { ArrowLeftIcon, Calendar as CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -15,9 +14,39 @@ import { Link } from "react-router-dom";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Input } from "@/components/ui/input";
+import { visitorBook } from "@/data/api/apiClient";
+import { useSelector } from "react-redux";
+import { DateTime } from "luxon";
 
 const VisitorBooking = () => {
-  const [date, setDate] = useState<Date>();
+  const userobj = useSelector((state: any) => state.userReducer);
+  const [date, setDate] = useState<DateTime| null>(null);
+  const [timeSlot, setTimeSlot] = useState<string | null>(null);
+  const [reasonForVisit, setReasonForVisit] = useState<string>('');
+  const handleDateSelect = (selectedDate: DateTime | null) => {
+    setDate(selectedDate);
+  };
+  const handleTimeSlotSelect = (time: string) => {
+    setTimeSlot(time);
+  };
+
+
+  const book = async () =>{
+
+    if(date && timeSlot){
+
+      const [hour, minute, period] = timeSlot.split(/[:\s]/); 
+      const formattedHour = period === 'PM' && hour !== '12' ? parseInt(hour) + 12 : parseInt(hour);
+      const bookingTiming = date.set({ hour: formattedHour, minute: parseInt(minute) });
+      console.log(date);
+      console.log(bookingTiming);
+      try{
+        const bookingResponse = await visitorBook(userobj.profile.visitorId,bookingTiming,reasonForVisit,)
+      }catch(error){
+      console.error('error: ', error);
+      }
+    }
+  }
 
   return (
     <div className="visitorcontentbg">
@@ -68,13 +97,14 @@ const VisitorBooking = () => {
                 </div>
               </RadioGroup>
               <p className="font-semibold pt-4 pb-2 text-sm text-slate-800">
-                Number of Guests
+                Reason for Visit
               </p>
 
               <Input
-                type="number"
-                placeholder="total pax"
+                type="text"
                 className="w-full sm:w-60"
+                value={reasonForVisit}
+                onChange={(e) =>setReasonForVisit(e.target.value)}
               />
 
               <p className="font-semibold pt-4 pb-2 text-sm text-slate-600">
@@ -90,14 +120,14 @@ const VisitorBooking = () => {
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {date ? format(date, "PPP") : <span></span>}
+                    {date ? date.toLocaleString(DateTime.DATE_MED) : <span></span>}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0">
                   <Calendar
                     mode="single"
-                    selected={date}
-                    onSelect={setDate}
+                    selected={date?.toJSDate()}
+                    onSelect={d => handleDateSelect(d? DateTime.fromJSDate(d): null)}
                     initialFocus
                   />
                 </PopoverContent>
@@ -108,43 +138,21 @@ const VisitorBooking = () => {
 
               <p className="font-semibold pb-3  text-sm">Time Slot</p>
               <div className="pb-4">
-                <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
-                  09:00AM
-                </Badge>
-                <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
-                  10:00AM
-                </Badge>
-                <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
-                  11:00AM
-                </Badge>
-                <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
-                  12:00AM
-                </Badge>
-                <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
-                  01:00PM
-                </Badge>
-                <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
-                  02:00PM
-                </Badge>
-                <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
-                  03:00PM
-                </Badge>
-                <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
-                  04:00PM
-                </Badge>
-                <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
-                  05:00PM
-                </Badge>
-                <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
-                  06:00PM
-                </Badge>
+                {['09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM', '05:00 PM', '06:00 PM'].map(time => (
+                  <Badge
+                    key={time}
+                    className={`cursor-pointer ${timeSlot === time ? 'bg-blue-600' : 'bg-slate-400 hover:bg-blue-600'} mr-2 mb-2`}
+                    onClick={() => handleTimeSlotSelect(time)}>{time}
+                  </Badge>
+                ))}
               </div>
-
               <br />
             </div>
             <hr />
             <div className="p-4 mb-8 mt-2">
-              <Button className="float-right">Proceed Next</Button>
+              <Button className="float-right"
+                onClick={()=> book()}
+              >Request Booking</Button>
             </div>
             <br />
           </div>
