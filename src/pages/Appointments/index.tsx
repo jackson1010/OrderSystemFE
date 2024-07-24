@@ -18,7 +18,6 @@ const HomePage = () => {
 
   useEffect(()=>{
     console.log("homePage")
-    
     const fetchVisitorBookings = async ()=>{
     
       try{
@@ -39,10 +38,6 @@ const HomePage = () => {
       fetchVisitorBookings();
     }
   }, [userobj.profile]);
-
-
-    
-
 
   return (
     <div>

@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles.css";
-import { format } from "date-fns";
 import { ArrowLeftIcon, Calendar as CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -11,13 +10,105 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Badge } from "@/components/ui/badge";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Input } from "@/components/ui/input";
+import { getAllBookings, getAllHolidays, visitorBook } from "@/data/api/apiClient";
+import { useSelector } from "react-redux";
+import { DateTime } from "luxon";
+import { BOOK_SLOT_LIMIT, TIME_SLOTS, UnavailableDate } from "@/data/interface";
+import LoadingOverlay from "@/components/ui/loading";
+import CompletionCard from "@/components/ui/completionCardProps";
 
 const VisitorBooking = () => {
-  const [date, setDate] = useState<Date>();
+  const navigate = useNavigate();
+  const userobj = useSelector((state: any) => state.userReducer);
+  const [date, setDate] = useState<DateTime| null>(null);
+  const [timeSlot, setTimeSlot] = useState<string | null>(null);
+  const [availableTimeSlot, setAvailableTimeSlot]= useState<string[]>([]);
+  const [reasonForVisit, setReasonForVisit] = useState<string>('');
+  const [unavailableDates, setUnavailableDates] = useState<UnavailableDate[]>([]);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [bookingCompleted, setBookingCompleted] = useState(false);
+
+  const handleDateSelect = (selectedDate: DateTime | null) => {setDate(selectedDate); setIsPopoverOpen(false); };
+  const handleTimeSlotSelect = (time: string) => {setTimeSlot(time);};
+
+  console.log("visitor booking page");
+
+  useEffect(()=>{
+    const getUnavailableDays = async() =>{
+      try{
+        const getUnavailableDaysResponse = await getAllHolidays();
+        if(getUnavailableDaysResponse.status== 200){
+            console.log(getUnavailableDaysResponse);
+            setUnavailableDates(getUnavailableDaysResponse.data)
+        }
+      }catch(error){
+        console.error('error: ', error);
+      }
+    }
+    getUnavailableDays();
+    },[]);
+
+    const isDateUnavailable = (d: Date) =>{
+      const jsDate = DateTime.fromJSDate(d).toISODate();
+      return unavailableDates.some(item => item.date === jsDate && (item.center === 'BOTH'|| item.center === 'SHC'))
+    }
+
+    useEffect(()=>{
+      const getAvailableTimeSlot = async() =>{
+        try{
+            const isoDate = date?.toISODate();
+            const getAvailableTimeSlotResponse = await getAllBookings(isoDate);
+            if(getAvailableTimeSlotResponse.status== 200){  
+                console.log(getAvailableTimeSlotResponse);
+                if(getAvailableTimeSlotResponse.data.length !=0){
+                const avaiableSlot = TIME_SLOTS.filter(slot => {
+                  const bookedCount = getAvailableTimeSlotResponse.data[slot] || 0;
+                  return bookedCount < BOOK_SLOT_LIMIT;
+                });
+                setAvailableTimeSlot(avaiableSlot);
+              }else{
+                setAvailableTimeSlot(TIME_SLOTS);
+              }
+            }
+        }catch(error){
+        console.error('error: ', error);
+        }
+    };
+      if(date){
+        getAvailableTimeSlot();
+      }
+    },[date]);
+
+  const book = async () =>{
+    if(date && timeSlot && reasonForVisit){
+      setIsLoading(true);
+      const [hour, minute, period] = timeSlot.split(/[:\s]/); 
+      const formattedHour = period === 'PM' && hour !== '12' ? parseInt(hour) + 12 : parseInt(hour);
+      const bookingTiming = date.set({ hour: formattedHour, minute: parseInt(minute) }).toFormat("yyyy-MM-dd'T'HH:mm:ss");
+      try{
+        const bookingResponse = await visitorBook(userobj.profile.visitorId,bookingTiming,reasonForVisit,);
+        console.log(bookingResponse);
+        if (bookingResponse.status == 200) {
+          setReasonForVisit("");
+          setDate(null);
+          setBookingCompleted(true);
+          setTimeout(()=>{
+            navigate("/");
+          },10000);
+          
+        }
+      }catch(error){
+      console.error('error: ', error);
+      } finally{
+        setIsLoading(false);
+      }
+    }
+  }
 
   return (
     <div className="visitorcontentbg">
@@ -68,19 +159,20 @@ const VisitorBooking = () => {
                 </div>
               </RadioGroup>
               <p className="font-semibold pt-4 pb-2 text-sm text-slate-800">
-                Number of Guests
+                Reason for Visit
               </p>
 
               <Input
-                type="number"
-                placeholder="total pax"
+                type="text"
                 className="w-full sm:w-60"
+                value={reasonForVisit}
+                placeholder="required"
+                onChange={(e) =>setReasonForVisit(e.target.value)}
               />
-
               <p className="font-semibold pt-4 pb-2 text-sm text-slate-600">
                 Date
               </p>
-              <Popover>
+              <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                 <PopoverTrigger asChild>
                   <Button
                     variant={"outline"}
@@ -90,68 +182,50 @@ const VisitorBooking = () => {
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {date ? format(date, "PPP") : <span></span>}
+                    {date ? date.toLocaleString(DateTime.DATE_MED) : <span>Select a date</span>}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0">
                   <Calendar
                     mode="single"
-                    selected={date}
-                    onSelect={setDate}
+                    selected={date?.toJSDate()}
+                    onSelect={d => handleDateSelect(d? DateTime.fromJSDate(d): null)}
                     initialFocus
+                    disabled ={isDateUnavailable}
                   />
                 </PopoverContent>
               </Popover>
 
               <br />
               <br />
-
-              <p className="font-semibold pb-3  text-sm">Time Slot</p>
-              <div className="pb-4">
-                <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
-                  09:00AM
-                </Badge>
-                <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
-                  10:00AM
-                </Badge>
-                <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
-                  11:00AM
-                </Badge>
-                <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
-                  12:00AM
-                </Badge>
-                <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
-                  01:00PM
-                </Badge>
-                <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
-                  02:00PM
-                </Badge>
-                <Badge className="cursor-pointer bg-slate-400 hover:bg-blue-600 mr-2 mb-2">
-                  03:00PM
-                </Badge>
-                <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
-                  04:00PM
-                </Badge>
-                <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
-                  05:00PM
-                </Badge>
-                <Badge className="cursor-not-allowed bg-slate-200 hover:bg-slate-200 mr-2 mb-2">
-                  06:00PM
-                </Badge>
-              </div>
-
-              <br />
+              { date &&(
+                <>
+                <p className="font-semibold pb-3  text-sm">Time Slot</p>
+                <div className="pb-4">
+                  {availableTimeSlot.map(time => (
+                    <Badge
+                      key={time}
+                      className={`cursor-pointer ${timeSlot === time ? 'bg-blue-600' : 'bg-slate-400 hover:bg-blue-600'} mr-2 mb-2`}
+                      onClick={() => handleTimeSlotSelect(time)}
+                      >
+                        {time}
+                    </Badge>
+                  ))}
+                </div>
+                </>
+              )} 
             </div>
             <hr />
-            <div className="p-4 mb-8 mt-2">
-              <Button className="float-right">Proceed Next</Button>
-            </div>
-            <br />
+            {date && timeSlot && reasonForVisit.length >5 &&(
+              <div className="p-4 mb-8 mt-2">
+              <Button className="float-right" onClick={()=> book()}>Request Booking</Button>
+             </div>
+            )}
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default VisitorBooking;
