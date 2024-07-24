@@ -31,6 +31,8 @@ const CreateNewAccount = () => {
       if(signUpResponse.status == 201){
         console.log('signup done');
         setSignUpError("Account Created");
+        setUsername('');
+        setPassword('');
         setTimeout(()=>{
           setSignUpError(null);
         },5000);
