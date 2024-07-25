@@ -17,9 +17,7 @@ import { Input } from "@/components/ui/input";
 import { getAllBookings, getAllHolidays, visitorBook } from "@/data/api/apiClient";
 import { useSelector } from "react-redux";
 import { DateTime } from "luxon";
-import { BOOK_SLOT_LIMIT, TIME_SLOTS, UnavailableDate } from "@/data/interface";
-import LoadingOverlay from "@/components/ui/loading";
-import CompletionCard from "@/components/ui/completionCardProps";
+import { BOOK_SLOT_LIMIT, TIME_SLOTS } from "@/data/interface";
 
 const VisitorBooking = () => {
   const navigate = useNavigate();
@@ -28,7 +26,10 @@ const VisitorBooking = () => {
   const [timeSlot, setTimeSlot] = useState<string | null>(null);
   const [availableTimeSlot, setAvailableTimeSlot]= useState<string[]>([]);
   const [reasonForVisit, setReasonForVisit] = useState<string>('');
-  const [unavailableDates, setUnavailableDates] = useState<UnavailableDate[]>([]);
+  const [unavailableDates, setUnavailableDates] = useState(() => {
+    const storedDates = localStorage.getItem('unavailableDates');
+    return storedDates ? JSON.parse(storedDates) : null;
+  });
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [bookingCompleted, setBookingCompleted] = useState(false);
@@ -44,18 +45,31 @@ const VisitorBooking = () => {
         const getUnavailableDaysResponse = await getAllHolidays();
         if(getUnavailableDaysResponse.status== 200){
             console.log(getUnavailableDaysResponse);
-            setUnavailableDates(getUnavailableDaysResponse.data)
+            setUnavailableDates(getUnavailableDaysResponse.data);
+            localStorage.setItem('unavailableDates', JSON.stringify(getUnavailableDaysResponse.data));
         }
       }catch(error){
         console.error('error: ', error);
       }
     }
-    getUnavailableDays();
-    },[]);
+      if(!unavailableDates){
+      getUnavailableDays();
+      }
+    },[unavailableDates]);
 
     const isDateUnavailable = (d: Date) =>{
       const jsDate = DateTime.fromJSDate(d).toISODate();
-      return unavailableDates.some(item => item.date === jsDate && (item.center === 'BOTH'|| item.center === 'SHC'))
+      const today = DateTime.local().toISODate();
+
+      //check if date is in the past
+      if(jsDate){
+        if (jsDate <= today) {
+          return true;
+        }
+      }
+
+      return unavailableDates.some((item: { date: string ; center: string; }) => 
+        item.date === jsDate && (item.center === 'BOTH'|| item.center === 'SHC'))
     }
 
     useEffect(()=>{
@@ -75,10 +89,10 @@ const VisitorBooking = () => {
                 setAvailableTimeSlot(TIME_SLOTS);
               }
             }
-        }catch(error){
-        console.error('error: ', error);
-        }
-    };
+          }catch(error){
+          console.error('error: ', error);
+          }
+      };
       if(date){
         getAvailableTimeSlot();
       }
@@ -195,7 +209,6 @@ const VisitorBooking = () => {
                   />
                 </PopoverContent>
               </Popover>
-
               <br />
               <br />
               { date &&(

@@ -30,6 +30,7 @@ export const getAllBookings = (date: any) => apiClient.get(`/allbookings?date=${
 //VISITOR
 export const getProfile = (username: string) => apiClient.post('/profile', { username });
 export const getMyVisitorBookings = (visitorId: string) => apiClient.get(`/visitor/bookings?visitorId=${visitorId}`);
+export const deleteBooking =(visitorBookingId: string) => apiClient.delete(`/visitor/delbooking?visitorBookingId=${visitorBookingId}`);
 export const visitorBook = (visitorId: string, bookingTiming: any, reasonForVisit: string) => {
   const requestBody: VisitorBookingRequest = {
     bookingTiming,
