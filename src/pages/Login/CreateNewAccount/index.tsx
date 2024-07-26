@@ -6,8 +6,11 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
+interface CreateNewAccountProps {
+  onSignUpComplete: () => void;
+}
 
-const CreateNewAccount = () => {
+const CreateNewAccount:React.FC<CreateNewAccountProps> = ({onSignUpComplete}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -34,7 +37,8 @@ const CreateNewAccount = () => {
         setUsername('');
         setPassword('');
         setTimeout(()=>{
-          setSignUpError(null);
+        setSignUpError(null);
+        onSignUpComplete();
         },5000);
         return;
       }

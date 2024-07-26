@@ -31,4 +31,3 @@ export const setClientProfile = (data: ClientProfile): SetClientProfileAction =>
 export const logout = () => ({
   type: LOGOUT,
 })
-

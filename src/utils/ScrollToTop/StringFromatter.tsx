@@ -1,3 +1,5 @@
+import { min } from "date-fns";
+
 export const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const options: Intl.DateTimeFormatOptions = {
@@ -7,6 +9,15 @@ export const formatDate = (dateString: string) => {
       day: 'numeric'
     };
     return date.toLocaleDateString(undefined, options);
+  };
+
+  export const formatTime = (dateString: string) => {
+    const date = new Date(dateString);
+    const hours = date.getHours().toString().padStart(2, "0");
+    const mins = date.getMinutes().toString().padStart(2, "0");
+
+    const timeString = `${hours}:${mins}`;
+    return timeString;
   };
 
  export const toCamelCase = (str: string) => {

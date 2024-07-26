@@ -6,10 +6,11 @@ import { logout } from "@/data/actions/userAction";
 
 const BottomNav = () => {
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    localStorage.clear();
+    console.log(localStorage)
     dispatch(logout());
   };
 
