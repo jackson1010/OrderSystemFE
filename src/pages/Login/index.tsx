@@ -17,12 +17,21 @@ import { setClientProfile, setVisitorProfile } from "@/data/actions/userAction";
 import { AppDispatch } from "@/data/store";
 import { validateCredentials } from "@/utils/ScrollToTop/Validations/authValidation";
 import { getProfile, signIn } from "@/data/api/apiClient";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 const Login = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError]= useState<string | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const handleSignUpCompletion = () => {
+    // Logic to handle sign up completion
+    setIsDialogOpen(false);
+    setIsDrawerOpen(false);
+  };
 
   const handleLogin = async () => {
     
@@ -94,14 +103,17 @@ const Login = () => {
 
           <div className="w-full mx-auto block text-sm">
             <div className="desktopwidget">
-              <Dialog>
-                <DialogTrigger>
-                  <p className="text-blue-500 font-base mt-6 cursor-pointer underline">
+              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogTrigger asChild>
+                  <p className="text-blue-500 font-base mt-6 cursor-pointer underline"
+                  onClick={()=> setIsDialogOpen(true)}>
                     Sign Up for Geha Booking
                   </p>
                 </DialogTrigger>
                 <DialogContent>
-                  <CreateNewAccount />
+                  <DialogClose asChild>
+                  </DialogClose>
+                  <CreateNewAccount onSignUpComplete={handleSignUpCompletion}/>
                 </DialogContent>
               </Dialog>
               <br />
@@ -115,18 +127,25 @@ const Login = () => {
                   <ForgetPassword />
                 </DialogContent>
               </Dialog>
+              {loginError &&(
+                <div className="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+                  <p className="font-bold">Error message</p>
+                  <p className="text-sm">{loginError}</p>
+                </div>
+              )}
             </div>
 
             <div className="mobilewidget">
-              <Drawer>
-                <DrawerTrigger>
-                  <p className="text-blue-500 font-base mt-6 cursor-pointer underline">
+              <Drawer open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}> 
+                <DrawerTrigger asChild>
+                  <p className="text-blue-500 font-base mt-6 cursor-pointer underline"
+                  onClick={() => setIsDrawerOpen(true)}>
                     Sign Up for Geha Booking
                   </p>
                 </DrawerTrigger>
                 <DrawerContent className="pb-8" style={{ minHeight: "50%" }}>
                   <DrawerHeader>
-                    <CreateNewAccount />
+                    <CreateNewAccount onSignUpComplete={handleSignUpCompletion} />
                   </DrawerHeader>
                 </DrawerContent>
               </Drawer>

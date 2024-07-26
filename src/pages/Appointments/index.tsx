@@ -7,19 +7,16 @@ import {
   PhoneOutgoingIcon,
 } from "lucide-react";
 import { useSelector } from "react-redux";
-import { getMyVisitorBookings } from "@/data/api/apiClient";
+import { deleteBooking, getMyVisitorBookings } from "@/data/api/apiClient";
 import { useEffect, useState } from "react";
-import { formatDate } from "@/utils/ScrollToTop/StringFromatter";
+import { formatDate, formatTime } from "@/utils/ScrollToTop/StringFromatter";
 
 const HomePage = () => {
   const navigate = useNavigate();
   const userobj = useSelector((state: any) => state.userReducer);
   const [bookingList, setBookingList] = useState([]);
 
-  useEffect(()=>{
-    console.log("homePage")
     const fetchVisitorBookings = async ()=>{
-    
       try{
         console.log("fetching data")
         const bookingReponse = await getMyVisitorBookings(userobj.profile.visitorId);
@@ -34,10 +31,26 @@ const HomePage = () => {
       }
     };
 
-    if (userobj.profile && userobj.profile.visitorId) {
-      fetchVisitorBookings();
+    useEffect(()=> {
+      if (userobj.profile && userobj.profile.visitorId) {
+        fetchVisitorBookings();
+      }
+
+    },[userobj.profile]);
+
+  const cancelBooking = async (visitorBookingId: string) =>{
+    console.log(visitorBookingId);
+    try{
+      const deleteBookingResponse = await deleteBooking(visitorBookingId);
+
+      if(deleteBookingResponse.status ==200){
+        console.log(deleteBookingResponse.data);
+        fetchVisitorBookings();
+      }
+    }catch(error){
+      console.error('error: ', error);
     }
-  }, [userobj.profile]);
+  }
 
   return (
     <div>
@@ -117,14 +130,15 @@ const HomePage = () => {
               <Card
                 key ={booking.visitorBookingId}
                 className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-100 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3"
-                onClick={() => {navigate("/therapydetails");}}
               >
               <h3 className="font-bold">{formatDate(booking.bookingTiming)}</h3>
-              <p className="mt-2">Subject: {booking.reasonForVisit}</p>
+              <p className="mt-0">Time: {formatTime(booking.bookingTiming)}</p>
+              <p className="mt-0">Subject: {booking.reasonForVisit}</p>
               <p className="mt-0">Approved: <span className={booking.isApproved ? 'text-green-600' : 'text-red-600'}>
                 {booking.isApproved ? "Yes" : "No"}</span>
               </p>
-              <p className="mt-1 text-slate-600 underline">Click for details</p>
+              <button className=""
+              onClick={ () =>cancelBooking(booking.visitorBookingId)}>Cancel Booking</button>
               </Card>
             ))
             )}

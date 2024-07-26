@@ -141,7 +141,7 @@ const VisitorBooking = () => {
               Visitor Booking Form
             </p>
             <div className="p-4">
-              <p className="font-semibold pb-2 text-sm text-slate-800">
+              {/* <p className="font-semibold pb-2 text-sm text-slate-800">
                 Category
               </p>
               <RadioGroup defaultValue="">
@@ -171,7 +171,7 @@ const VisitorBooking = () => {
                     Social Worker Visit
                   </Label>
                 </div>
-              </RadioGroup>
+              </RadioGroup> */}
               <p className="font-semibold pt-4 pb-2 text-sm text-slate-800">
                 Reason for Visit
               </p>

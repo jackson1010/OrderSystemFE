@@ -9,6 +9,8 @@ const SideNav = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    localStorage.clear();
+    console.log(localStorage)
     dispatch(logout());
   };
   return (

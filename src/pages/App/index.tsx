@@ -5,12 +5,13 @@ import Login from "../Login";
 import SampleShadCnUi from "../References/SampleShadCnUi";
 import UnderDevelopment from "../UnderDevelopment";
 import "./styles.css";
-import Appointments from "../Appointments";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SideNav from "./SideNav";
 import BottomNav from "./BottomNav";
 import VisitorBooking from "../Appointments/VisitorBooking";
+import HomePage from "../Appointments";
+import BookingDetail from "../Appointments/BookingDetail";
 
 const App = () => {
   const navigate = useNavigate();
@@ -50,10 +51,10 @@ const App = () => {
           <SideNav />
           <div className="sidecontent">
             <Routes>
-              <Route path="/" element={<Appointments />} />
-              <Route path="/appointment" element={<Appointments />} />
+              <Route path="/" element={<HomePage />} />
               <Route path="/therapy" element={<TherapyBooking />} />
               <Route path="/visitor" element={<VisitorBooking />} />
+              <Route path="/visitor/booking" element={<BookingDetail />} />
               <Route path="/shadcnui" element={<SampleShadCnUi />} />
               <Route path="/references" element={<References />} />
               <Route path="/*" element={<UnderDevelopment />} />
