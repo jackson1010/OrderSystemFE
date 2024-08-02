@@ -18,14 +18,21 @@ import { AppDispatch } from "@/data/store";
 import { validateCredentials } from "@/utils/ScrollToTop/Validations/authValidation";
 import { getProfile, signIn } from "@/data/api/apiClient";
 import { DialogClose } from "@radix-ui/react-dialog";
+import Alert from "@/components/ui/alert";
 
 const Login = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [loginError, setLoginError]= useState<string | null>(null);
+  const [error, setError]= useState(false);
+  const [errorMsg, setErrorMsg]= useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const clear =() =>{
+    setUsername('');
+    setPassword('');
+  }
 
   const handleSignUpCompletion = () => {
     // Logic to handle sign up completion
@@ -35,11 +42,14 @@ const Login = () => {
 
   const handleLogin = async () => {
     
-    const error = validateCredentials(username, password);
-    if(error){
-      setLoginError(error);
+    const validateError = validateCredentials(username, password);
+    
+    if(validateError){
+      clear();
+      setErrorMsg("Invalid username or password")
+      setError(true);
       setTimeout(()=>{
-        setLoginError(null);
+        setError(false);
       },5000);
       return;
     }
@@ -65,10 +75,15 @@ const Login = () => {
               break;
           }
         }else{
-          setLoginError('Failed to fetch user details.');
+          clear();
+          setErrorMsg('Failed to fetch user details.');
+          setError(true);
         }
       }
     }catch(error){
+      clear();
+      setErrorMsg("Invalid username or passwords");
+      setError(true);
       console.error('error: ', error);
     }
   };
@@ -127,10 +142,10 @@ const Login = () => {
                   <ForgetPassword />
                 </DialogContent>
               </Dialog>
-              {loginError &&(
+              {error &&(
                 <div className="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
                   <p className="font-bold">Error message</p>
-                  <p className="text-sm">{loginError}</p>
+                  <p className="text-sm">{errorMsg}</p>
                 </div>
               )}
             </div>
@@ -162,11 +177,8 @@ const Login = () => {
                   </DrawerHeader>
                 </DrawerContent>
               </Drawer>
-              {loginError &&(
-                <div className="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
-                  <p className="font-bold">Error message</p>
-                  <p className="text-sm">{loginError}</p>
-                </div>
+              {error &&(
+                <Alert message={errorMsg} type="error"/>
               )}
             </div>
           </div>

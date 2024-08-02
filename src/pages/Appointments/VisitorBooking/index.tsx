@@ -11,13 +11,12 @@ import {
 } from "@/components/ui/popover";
 import { Badge } from "@/components/ui/badge";
 import { Link, useNavigate } from "react-router-dom";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Input } from "@/components/ui/input";
 import { getAllBookings, getAllHolidays, visitorBook } from "@/data/api/apiClient";
 import { useSelector } from "react-redux";
 import { DateTime } from "luxon";
 import { BOOK_SLOT_LIMIT, TIME_SLOTS } from "@/data/interface";
+import Alert from "@/components/ui/alert";
 
 const VisitorBooking = () => {
   const navigate = useNavigate();
@@ -32,12 +31,26 @@ const VisitorBooking = () => {
   });
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [bookingCompleted, setBookingCompleted] = useState(false);
-
   const handleDateSelect = (selectedDate: DateTime | null) => {setDate(selectedDate); setIsPopoverOpen(false); };
   const handleTimeSlotSelect = (time: string) => {setTimeSlot(time);};
+  const [error, setError]= useState(false);
+  const [errorMsg, setErrorMsg]= useState('');
+  const [completed, setCompleted]= useState(false);
 
   console.log("visitor booking page");
+  
+  const clear = () =>{
+    setReasonForVisit("");
+    setDate(null);
+  }
+
+  const timer = (msg: string) =>{
+    setError(true);
+    setErrorMsg(msg);
+    setTimeout(()=>{
+      setError(false);
+      },5000);
+  }
 
   useEffect(()=>{
     const getUnavailableDays = async() =>{
@@ -49,6 +62,7 @@ const VisitorBooking = () => {
             localStorage.setItem('unavailableDates', JSON.stringify(getUnavailableDaysResponse.data));
         }
       }catch(error){
+        timer("Unable to fetch holidays");
         console.error('error: ', error);
       }
     }
@@ -67,7 +81,6 @@ const VisitorBooking = () => {
           return true;
         }
       }
-
       return unavailableDates.some((item: { date: string ; center: string; }) => 
         item.date === jsDate && (item.center === 'BOTH'|| item.center === 'SHC'))
     }
@@ -90,6 +103,7 @@ const VisitorBooking = () => {
               }
             }
           }catch(error){
+            timer("Unable to get time slots");
           console.error('error: ', error);
           }
       };
@@ -108,16 +122,17 @@ const VisitorBooking = () => {
         const bookingResponse = await visitorBook(userobj.profile.visitorId,bookingTiming,reasonForVisit,);
         console.log(bookingResponse);
         if (bookingResponse.status == 200) {
-          setReasonForVisit("");
-          setDate(null);
-          setBookingCompleted(true);
+          clear();
+          setCompleted(true);
           setTimeout(()=>{
             navigate("/");
           },10000);
           
         }
-      }catch(error){
-      console.error('error: ', error);
+      }catch(error:any){
+        clear();
+        timer(error.response?.data?.message ||"Unable to proceed with bookng")
+        console.error('error: ', error);
       } finally{
         setIsLoading(false);
       }
@@ -135,43 +150,13 @@ const VisitorBooking = () => {
           <span style={{ float: "right" }}>en</span>
         </div>
         <div className="visitormobilebanner" />
+        {/* BODY */}
         <div className="sm:p-4 sm:pb-16 sm:pt-10">
           <div className="shadow-lg bg-white sm:max-w-2xl sm:m-auto sm:rounded-md">
             <p className="font-bold text-base text-slate-900 pt-6 px-4 pb-2 underline">
               Visitor Booking Form
             </p>
             <div className="p-4">
-              {/* <p className="font-semibold pb-2 text-sm text-slate-800">
-                Category
-              </p>
-              <RadioGroup defaultValue="">
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem
-                    value="family"
-                    id="r1-1"
-                    className="text-slate-500"
-                  />
-                  <Label
-                    htmlFor="r1-1"
-                    className="text-sm text-slate-500 font-normal"
-                  >
-                    Family Member Visit
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem
-                    value="socialworker"
-                    id="r1-2"
-                    className="text-slate-500"
-                  />
-                  <Label
-                    htmlFor="r1-2"
-                    className="text-sm text-slate-500 font-normal"
-                  >
-                    Social Worker Visit
-                  </Label>
-                </div>
-              </RadioGroup> */}
               <p className="font-semibold pt-4 pb-2 text-sm text-slate-800">
                 Reason for Visit
               </p>
@@ -180,7 +165,7 @@ const VisitorBooking = () => {
                 type="text"
                 className="w-full sm:w-60"
                 value={reasonForVisit}
-                placeholder="required"
+                placeholder="provide a valid reason, more than 5 characters"
                 onChange={(e) =>setReasonForVisit(e.target.value)}
               />
               <p className="font-semibold pt-4 pb-2 text-sm text-slate-600">
@@ -235,6 +220,12 @@ const VisitorBooking = () => {
              </div>
             )}
           </div>
+          {error &&(
+            <Alert message={errorMsg} type="error"/>
+          )}
+          {completed &&(
+            <Alert message="Booking completed" type="success"/>
+          )}
         </div>
       </div>
     </div>

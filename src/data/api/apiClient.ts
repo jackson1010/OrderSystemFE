@@ -24,6 +24,8 @@ apiClient.interceptors.request.use((config) =>{
 //COMMON
 export const signUp = (credentials: any) => apiClient.post('/visitor/signup', credentials);
 export const signIn = (credentials: any) => apiClient.post('/signin', credentials);
+export const resetlink = (username: any) => apiClient.post('/resetlink', username);
+export const resetPassword = (token: any, password: any) => apiClient.post('/resetpassword', token, password);
 export const getAllHolidays = () => apiClient.get('/getallholidays');
 export const getAllBookings = (date: any) => apiClient.get(`/allbookings?date=${date}`);
 
