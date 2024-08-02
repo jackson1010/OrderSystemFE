@@ -15,6 +15,7 @@ const HomePage = () => {
   const navigate = useNavigate();
   const userobj = useSelector((state: any) => state.userReducer);
   const [bookingList, setBookingList] = useState([]);
+  const [confirmCancel, setConfirmCancel]= useState(false);
 
     const fetchVisitorBookings = async ()=>{
       try{
@@ -137,14 +138,21 @@ const HomePage = () => {
               <p className="mt-0">Approved: <span className={booking.isApproved ? 'text-green-600' : 'text-red-600'}>
                 {booking.isApproved ? "Yes" : "No"}</span>
               </p>
-              <button className=""
-              onClick={ () =>cancelBooking(booking.visitorBookingId)}>Cancel Booking</button>
+              <button className="mt-2 text-red justify-self-end hover:before:bg-redborder-red-500 relative h-[20px] w-20 overflow-hidden border border-red-500 bg-white px-3 text-red-500 shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-red-500 before:transition-all before:duration-500 hover:text-white hover:shadow-red-500 hover:before:left-0 hover:before:w-full rounded"
+                onClick={ () =>setConfirmCancel(true)}>
+                <span className="relative z-10">Cancel</span>
+              </button>
               </Card>
             ))
             )}
           </div>
         </div>
       </div>
+      {confirmCancel &&(
+        <>
+        //dialgo 
+        </>
+      )}
       <br />
     </div>
   );
