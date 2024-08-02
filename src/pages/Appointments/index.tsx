@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { deleteBooking, getMyVisitorBookings } from "@/data/api/apiClient";
 import { useEffect, useState } from "react";
 import { formatDate, formatTime } from "@/utils/ScrollToTop/StringFromatter";
+import Alert from "@/components/ui/alert";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -148,11 +149,6 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      {confirmCancel &&(
-        <>
-        //dialgo 
-        </>
-      )}
       <br />
     </div>
   );
