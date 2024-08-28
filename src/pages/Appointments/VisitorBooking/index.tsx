@@ -142,7 +142,7 @@ const VisitorBooking = () => {
   return (
     <div className="visitorcontentbg">
       <div className="bg-slate-100/70 min-h-lvh">
-        <div className="bg-purple-900 pt-5 px-4 text-slate-100 font-bold h-16">
+        <div className="bg-blue-900 pt-5 px-4 text-slate-100 font-bold h-16">
           <Link to="/">
             <ArrowLeftIcon className="inline mr-4 backbtn" />
           </Link>

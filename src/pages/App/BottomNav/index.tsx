@@ -1,4 +1,4 @@
-import { HomeIcon, LinkIcon, LogOutIcon, SettingsIcon } from "lucide-react";
+import { HomeIcon, LinkIcon, LogOutIcon, SettingsIcon, User } from "lucide-react";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -26,10 +26,10 @@ const BottomNav = () => {
         </div>
         <div
           className="flex-1 text-center cursor-pointer hover:text-slate-100"
-          onClick={() => navigate("/settings")}
+          onClick={() => navigate("/profile")}
         >
-          <SettingsIcon className="h ml-auto mr-auto" />
-          Settings
+          <User className="h ml-auto mr-auto" />
+          Profile
         </div>
         <div
           className="flex-1 text-center cursor-pointer hover:text-slate-100"
