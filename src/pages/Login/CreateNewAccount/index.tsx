@@ -2,7 +2,7 @@ import Alert from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { signUp } from "@/data/api/apiClient";
-import { validateCredentials } from "@/utils/ScrollToTop/Validations/authValidation";
+import { validateCredentials, validatePassword, validateUsername } from "@/utils/ScrollToTop/Validations/authValidation";
 import axios from "axios";
 import { useState } from "react";
 
@@ -25,11 +25,23 @@ const CreateNewAccount:React.FC<CreateNewAccountProps> = ({onSignUpComplete}) =>
   
   const handleSignUp = async() =>{
 
-    const error = validateCredentials(username, password);
+    const error = validateUsername(username);
+    const errorPassword  = validatePassword(password);
+    
     if(error){
       clear();
       setError(true);
-      setErrorMsg("Invalid username or password");
+      setErrorMsg(error);
+      setTimeout(()=>{
+        setError(false);
+      },5000);
+      return;
+    }
+
+    if(errorPassword){
+      clear();
+      setError(true);
+      setErrorMsg(errorPassword);
       setTimeout(()=>{
         setError(false);
       },5000);

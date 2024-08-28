@@ -11,7 +11,7 @@ import SideNav from "./SideNav";
 import BottomNav from "./BottomNav";
 import VisitorBooking from "../Appointments/VisitorBooking";
 import HomePage from "../Appointments";
-import BookingDetail from "../Appointments/BookingDetail";
+import Profile from "../Appointments/Profile";
 
 const App = () => {
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ const App = () => {
               <Route path="/" element={<HomePage />} />
               <Route path="/therapy" element={<TherapyBooking />} />
               <Route path="/visitor" element={<VisitorBooking />} />
-              <Route path="/visitor/booking" element={<BookingDetail />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/shadcnui" element={<SampleShadCnUi />} />
               <Route path="/references" element={<References />} />
               <Route path="/*" element={<UnderDevelopment />} />

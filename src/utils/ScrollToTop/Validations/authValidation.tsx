@@ -24,4 +24,15 @@ export const validateUsername = (username:string) =>{
     return 'Invalid email address';
   }
     return null;
+}
+
+export const validatePassword = (password:string) =>{
+  if(!password){
+    return 'password cannot be empty';
+  }
+
+  if(password.length < 6){
+    return 'password cannot be less than 6 characters';
+  }
+    return null;
 };

@@ -17,8 +17,28 @@ const HomePage = () => {
   const userobj = useSelector((state: any) => state.userReducer);
   const [bookingList, setBookingList] = useState([]);
   const [confirmCancel, setConfirmCancel]= useState(false);
+  const authority = userobj.profile.authority;
 
     const fetchVisitorBookings = async ()=>{
+
+      try{
+        console.log("fetching data")
+        const bookingReponse = await getMyVisitorBookings(userobj.profile.visitorId);
+  
+        if(bookingReponse.status ==200){
+          const bookings = await bookingReponse.data;
+          console.log(bookings);
+          setBookingList(bookings)
+        }
+      }catch(error){
+        console.error('error: ', error);
+      }
+    };
+    
+
+    //TODO for client 
+    const fetchClientBookings = async ()=>{
+
       try{
         console.log("fetching data")
         const bookingReponse = await getMyVisitorBookings(userobj.profile.visitorId);
@@ -34,8 +54,12 @@ const HomePage = () => {
     };
 
     useEffect(()=> {
-      if (userobj.profile && userobj.profile.visitorId) {
+      if (authority==="VISITOR" && userobj.profile && userobj.profile.visitorId ) {
         fetchVisitorBookings();
+      }
+
+      if (authority==="CLIENT" && userobj.profile && userobj.profile.clientId ) {
+        fetchClientBookings();
       }
 
     },[userobj.profile]);
@@ -77,34 +101,37 @@ const HomePage = () => {
         <div className="p-4 pr-1">
           <p className="text-sm font-bold pb-4 text-slate-700">Services</p>
           <div className="flex flex-wrap">
+          {authority ==="CLIENT" &&(
             <div className="mr-4" style={{ width: "66px" }}>
-              <Card
-                className="basis-10 shrink-0 grow-0 max-w-none bg-blue-50 text-blue-700 p-4 sm:hover:bg-blue-100 text-sm cursor-pointer"
-                onClick={() => {
-                  navigate("/therapy");
-                }}
-              >
-                <CalendarHeartIcon className="m-auto w-8 h-8" />
-              </Card>
-              <p className="text-xs text-center font-semibold text-slate-500">
-                Therapy Booking
-              </p>
-            </div>
-
+            <Card
+              className="basis-10 shrink-0 grow-0 max-w-none bg-blue-50 text-blue-700 p-4 sm:hover:bg-blue-100 text-sm cursor-pointer"
+              onClick={() => {
+                navigate("/therapy");
+              }}
+            >
+              <CalendarHeartIcon className="m-auto w-8 h-8" />
+            </Card>
+            <p className="text-xs text-center font-semibold text-slate-500">
+              Therapy Booking
+            </p>
+          </div>
+          )}
+          {authority ==="VISITOR" &&(
             <div className="mr-4" style={{ width: "66px" }}>
-              <Card
-                className="basis-10 shrink-0 grow-0 max-w-none bg-purple-50 text-purple-700 p-4 sm:hover:bg-purple-100 text-sm cursor-pointer"
-                onClick={() => {
-                  navigate("/visitor");
-                }}
-              >
-                <BookUserIcon className="m-auto w-8 h-8" />
-              </Card>
-              <p className="text-xs text-center font-semibold text-slate-500">
-                Visitor Booking
-              </p>
-            </div>
-
+            <Card
+              className="basis-10 shrink-0 grow-0 max-w-none bg-purple-50 text-purple-700 p-4 sm:hover:bg-purple-100 text-sm cursor-pointer"
+              onClick={() => {
+                navigate("/visitor");
+              }}
+            >
+              <BookUserIcon className="m-auto w-8 h-8" />
+            </Card>
+            <p className="text-xs text-center font-semibold text-slate-500">
+              Visitor Booking
+            </p>
+          </div>
+          )}
+            
             <div className="mr-4" style={{ width: "66px" }}>
               <Card
                 className="basis-10 shrink-0 grow-0 max-w-none bg-green-50 text-green-700 p-4 sm:hover:bg-green-100 text-sm cursor-pointer"
@@ -121,7 +148,12 @@ const HomePage = () => {
           </div>
         </div>
         <div className="p-4 pr-1">
-          <p className="text-sm font-bold pb-4">Your Bookings</p>
+          {(authority==="VISITOR" || authority==="CLIENT") && (
+            <p className="text-sm font-bold pb-4">Your Bookings</p>
+          )}
+          {(authority==="STAFF" || authority==="ADMIN") &&(
+            <p className="text-sm font-bold pb-4">Bookings for today</p>
+          )}
           <div className="flex flex-wrap">
             {bookingList.length ===0 ?(
               <Card className="basis-60 shrink-0 grow max-w-none sm:max-w-64 bg-slate-100 p-4 sm:hover:bg-slate-200 text-sm cursor-pointer mr-3 mb-3">
